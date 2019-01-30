@@ -374,8 +374,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 			"privateKrankenversicherungen": [ Private Krankenversicherung ],
 			"unterhaltsverpflichtungen": [ Unterhaltsverpflichtung ],
 			"sonstigeAusgaben": [ Sonstige Ausgabe ],
-			"mietausgaben": [ Mietausgabe ],
-			"sonstigeVersicherungsausgaben": [ Sonstige Versicherungsausgabe ]
+			"mietausgaben": [ Mietausgabe ]
 		},
 		"einnahmen": {
 			"einkuenfteAusNebentaetigkeit": [ Einkunft aus Nebentätigkeit ],
@@ -515,7 +514,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
 	}
 				
-#### Sonstige Ausgabe, Mietausgabe und Sonstige Versicherungsausgabe
+#### Sonstige Ausgabe und Mietausgabe
 
 	{
 		"betragMonatlich": Decimal,
