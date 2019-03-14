@@ -184,6 +184,7 @@ Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
 		"geburtsdatum": "YYYY-MM-DD",
 		"telefonPrivat": String,
 		"geburtsort": String,
+		"geburtsland": "ALPHA-2 Isocode"
 		"vorname": String,
 		"geburtsname": String,
 		"nachname": String,
