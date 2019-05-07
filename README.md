@@ -2,6 +2,8 @@
 
 Die Schnittstelle ermöglicht das automatisierte Anlegen von Vorgängen in **Kredit**Smart.
 
+Unter https://github.com/hypoport/kreditsmart-kex-vorgang-api-schema lieg das zugehörige JSON-Schema das zur Codegenerierung genutzt werden kann.
+
 ## Anlegen eines neuen Vorgangs
 
 Neue Vorgänge können per **HTTP POST** angelegt werden.
