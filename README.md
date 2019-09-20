@@ -139,6 +139,7 @@ Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/
 		"tippgeber": Partner,
 		"leadquelle": String,
 		"eigeneVorgangsnummer": String,
+		"baufiSmartVorgangsnummer": String,
 		"antragsteller1": Antragsteller,
 		"antragsteller2": Antragsteller,
 		"haushalt": Haushalt,
