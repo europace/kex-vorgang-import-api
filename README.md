@@ -618,3 +618,6 @@ Die Angaben werden als JSON im Body der Response gesendet.
 
 In *messages* werden nicht übernommene Angaben und andere Hinweise gesendet.
 
+## Nutzungsbedingungen
+Die APIs werden unter folgenden [Nutzungsbedingungen](https://developer.europace.de/terms/) zur Verfügung gestellt.
+
