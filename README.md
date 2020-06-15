@@ -46,15 +46,9 @@ Für jeden Request soll eine eindeutige ID generiert werden, die den Request im 
 Die Übermittlung der X-TraceId erfolgt über einen HTTP Header. Dieser Header ist optional,
 wenn er nicht gesetzt ist, wir eine ID vom System generiert.
 
-<table>
-<tr>
-<th>Request Header Name</th><th>Beschreibung</th><th>Beispiel</th>
-<tr>
-<td>X-TraceId</td>
-<td>eindeutige Id für jeden Request</td>
-<td>sys12345678</td>
-</tr>
-</table>
+| Request Header Name | Beschreibung                    | Beispiel    |
+|---------------------|---------------------------------|-------------|
+| X-TraceId           | eindeutige Id für jeden Request | sys12345678 |
 
 ## Content-Type
 
@@ -62,15 +56,9 @@ Die Schnittstelle akzeptiert Daten mit Content-Type "**application/json**".
 
 Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich das Encoding, wenn es nicht UTF-8 ist.
 
-<table>
-<tr>
-<th>
-Request Header Name</th><th>	Header Value</th>
-</tr>
-<tr>
-<td>Content-Type</td><td>	application/json</td>
-</tr>
-</table>
+| Request Header Name | Header Value           |
+|---------------------|------------------------|
+| Content-Type        | application/json       |
 
 ### POST Request Beispiel:
 
@@ -103,11 +91,10 @@ Wenn der Request nicht erfolgreich verarbeitet werden konnte, liefert die Schnit
 
 Achtung: In diesem Fall wird kein Vorgang in **Kredit**Smart importiert und angelegt.
 
-<table>
-<tr><th>Fehlercode</th><th>Nachricht</th><th>	Erklärung</th></tr>
-<tr><td>401</td><td>Unauthorized</td><td>Authentifizierung ist fehlgeschlagen</td></tr>
-<tr><td>422</td><td>Unprocessable Entity</td><td>Es wurde keine gültige Kundenbetreuer-Partner-ID angegeben</td></tr>
-</table>
+| Fehlercode | Nachricht            | Erklärung                                                  |
+|------------|----------------------|------------------------------------------------------------|
+| 401        | Unauthorized         | Authentifizierung ist fehlgeschlagen                       |
+| 422        | Unprocessable Entity | Es wurde keine gültige Kundenbetreuer-Partner-ID angegeben |
 
 Weitere Fehlercodes und ihre Bedeutung siehe Wikipedia: [HTTP-Statuscode](https://de.wikipedia.org/wiki/HTTP-Statuscode)
 
