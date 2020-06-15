@@ -2,7 +2,57 @@
 
 Die Schnittstelle ermöglicht das automatisierte Anlegen von Vorgängen in **Kredit**Smart.
 
-Unter https://github.com/hypoport/kreditsmart-kex-vorgang-api-schema lieg das zugehörige JSON-Schema das zur Codegenerierung genutzt werden kann.
+Unter https://github.com/hypoport/kreditsmart-kex-vorgang-api-schema liegt das zugehörige JSON-Schema das zur Codegenerierung genutzt werden kann.
+
+# Table of Contents
+
+* [Anlegen eines neuen Vorgangs](#anlegen-eines-neuen-vorgangs)
+* [Authentifizierung](#authentifizierung)
+* [TraceId zur Nachverfolgbarkeit von Requests](#traceid-zur-nachverfolgbarkeit-von-requests)
+* [Content-Type](#content-type)
+* [Beispiel](#beispiel)
+   * [POST Request](#post-request)
+   * [POST Response](#post-response)
+* [Fehlercodes](#fehlercodes)
+* [Request Format](#request-format)
+* [Vorgang](#vorgang)
+   * [Partner](#partner)
+   * [Antragsteller](#antragsteller)
+   * [Herkunft](#herkunft)
+   * [Personendaten](#personendaten)
+   * [Wohnsituation](#wohnsituation)
+   * [Beschäftigung](#beschäftigung)
+      * [Arbeiter und Angestellter](#arbeiter-und-angestellter)
+      * [Arbeitsloser und Hausfrau](#arbeitsloser-und-hausfrau)
+      * [Selbstständiger und Freiberufler](#selbstständiger-und-freiberufler)
+      * [Beamter](#beamter)
+      * [Rentner](#rentner)
+      * [Arbeitgeber](#arbeitgeber)
+   * [Anschrift](#anschrift)
+   * [Haushalt](#haushalt)
+      * [Antragstellerzuordnung](#antragstellerzuordnung)
+      * [Ratenkredit, Geschäftskredit und Sonstige Verbindlichkeit](#ratenkredit-geschäftskredit-und-sonstige-verbindlichkeit)
+      * [Kontokorrentkredit](#kontokorrentkredit)
+      * [Kreditkarte](#kreditkarte)
+      * [Dispositionskredit](#dispositionskredit)
+      * [Leasing](#leasing)
+      * [Depotvermögen](#depotvermögen)
+      * [Sonstiger Vermögenswert](#sonstiger-vermögenswert)
+      * [Bank- und Sparguthaben](#bank--und-sparguthaben)
+      * [Lebensversicherung](#lebensversicherung)
+      * [Bausparvertrag](#bausparvertrag)
+      * [Private Krankenversicherung und Unterhaltsverpflichtung](#private-krankenversicherung-und-unterhaltsverpflichtung)
+      * [Sonstige Ausgabe und Mietausgabe](#sonstige-ausgabe-und-mietausgabe)
+      * [Einkunft aus Nebentätigkeit](#einkunft-aus-nebentätigkeit)
+      * [Ehegattenunterhalt, Sonstige Einnahme, Einkunft aus Kapitalvermögen und Unbefristete Zusatzrente](#ehegattenunterhalt-sonstige-einnahme-einkunft-aus-kapitalvermögen-und-unbefristete-zusatzrente)
+      * [Immobilie](#immobilie)
+      * [Kind](#kind)
+   * [Finanzbedarf](#finanzbedarf)
+      * [Fahrzeugkauf](#fahrzeugkauf)
+   * [Response Format](#response-format)
+   * [Nutzungsbedingungen](#nutzungsbedingungen)
+   
+
 
 ## Anlegen eines neuen Vorgangs
 
@@ -60,7 +110,9 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 |---------------------|------------------------|
 | Content-Type        | application/json       |
 
-### POST Request Beispiel:
+## Beispiel
+
+### POST Request
 
 	POST https://www.europace2.de/kreditsmart/kex/vorgang
 	X-Authentication: xxxxxxx
@@ -77,7 +129,7 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 		}
 	}
     
-### POST Response Beispiel:
+### POST Response
 
 	201 CREATED
 	{
@@ -116,7 +168,7 @@ Alle übermittelten Daten werden in **Kredit**Smart übernommen, mit Ausnahme vo
 An verschiedenen Stellen im Request ist die Angabe eines Landes oder der Staatsangehörigkeit notwendig:
 Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
 
-### Vorgang
+## Vorgang
 
     {
 		"kundenbetreuer": Partner,
@@ -142,7 +194,7 @@ Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
 
 Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12. 
 
-#### Antragsteller
+### Antragsteller
 
     {
 		"herkunft": Herkunft,
@@ -151,7 +203,7 @@ Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
 		"beschaeftigung": Beschäftigung
 	}
 
-#### Herkunft
+### Herkunft
 
     {
 		"arbeitserlaubnisVorhanden": true | false,
@@ -163,7 +215,7 @@ Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
 		"steuerId": String
 	}
 
-#### Personendaten
+### Personendaten
 
     {
 		"titel": [ "DOKTOR" | "PROFESSOR" ]
@@ -180,8 +232,7 @@ Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
 		"email": String
 	}
 
-
-#### Wohnsituation
+### Wohnsituation
 
 	{
 		"anschrift": {
@@ -206,7 +257,7 @@ Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
 
 Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant.
 
-#### Beschäftigung
+### Beschäftigung
 
 
 	{
@@ -254,7 +305,6 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 	{
 		"sonstigesEinkommenMonatlich": Decimal
 	}
-
 
 #### Selbstständiger und Freiberufler
 
@@ -329,7 +379,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"branche": "BAUGEWERBE" | "DIENSTLEISTUNGEN" | "ENERGIE_WASSERVERSORGUNG_BERGBAU" | "ERZIEHUNG_UNTERRICHT" | "GEBIETSKOERPERSCHAFTEN" | "GEMEINNUETZIGE_ORGANISATION" | "GESUNDHEIT_SOZIALWESEN" | "HANDEL" | "HOTEL_GASTRONOMIE" | "INFORMATION_KOMMUNIKATION" | "KREDITINSTITUTE_VERSICHERUNGEN" | "KULTUR_SPORT_UNTERHALTUNG" | "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI" | "OEFFENTLICHER_DIENST" | "PRIVATE_HAUSHALTE" | "VERARBEITENDES_GEWERBE" | "VERKEHR_LOGISTIK"
 	}
 
-#### Anschrift
+### Anschrift
 
 	{
 		"strasse": String,
@@ -340,7 +390,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 	}
     
 
-#### Haushalt
+### Haushalt
 
     {
 		"verbindlichkeiten": {
@@ -558,7 +608,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 	}	
 				
 
-#### Finanzbedarf
+### Finanzbedarf
 
     {
 		"fahrzeugkauf": Fahrzeugkauf,
