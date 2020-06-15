@@ -2,7 +2,7 @@
 
 Die Schnittstelle ermöglicht das automatisierte Anlegen von Vorgängen in **Kredit**Smart.
 
-Unter https://github.com/hypoport/kreditsmart-kex-vorgang-api-schema liegt das zugehörige JSON-Schema das zur Codegenerierung genutzt werden kann.
+Unter https://github.com/hypoport/kreditsmart-kex-vorgang-api-schema liegt das zugehörige JSON-Schema, das zur Codegenerierung genutzt werden kann.
 
 # Table of Contents
 
@@ -80,21 +80,21 @@ Für jeden Request ist eine Authentifizierung erforderlich. Die Authentifizierun
 
 
 Das Bearer Token kann über die [Authorization-API](https://github.com/europace/authorization-api) angefordert werden. 
-Dazu wird ein Client benötigt der vorher von einer berechtigten Person über das Partnermanagement angelegt wurde, 
-eine Anleitung dafür befindet sich im [Help Center](https://europace2.zendesk.com/hc/de/articles/360012514780).
+Dazu wird ein Client benötigt, der vorher von einer berechtigten Person über das Partnermanagement angelegt wurde. 
+Eine Anleitung dafür befindet sich im [Help Center](https://europace2.zendesk.com/hc/de/articles/360012514780).
 
 Damit der Client für diese API genutzt werden kann, muss im Partnermanagement die Berechtigung **Kreditsmartvorgänge schreiben** aktiviert sein.  
  
 Schlägt die Authentifizierung fehl, erhält der Aufrufer eine HTTP Response mit Statuscode **401 UNAUTHORIZED**.
 
-Hat der Client nicht die benötigte Berechtigung um die Resource abzurufen, erhält der Aufrufer eine HTTP Response mit Statuscode **403 FORBIDDEN**.
+Hat der Client keine Berechtigung die Resource abzurufen, erhält der Aufrufer eine HTTP Response mit Statuscode **403 FORBIDDEN**.
 
 ## TraceId zur Nachverfolgbarkeit von Requests
 
 Für jeden Request soll eine eindeutige ID generiert werden, die den Request im EUROPACE 2 System nachverfolgbar macht und so bei etwaigen Problemen oder Fehlern die systemübergreifende Analyse erleichtert.
 
 Die Übermittlung der X-TraceId erfolgt über einen HTTP Header. Dieser Header ist optional,
-wenn er nicht gesetzt ist, wir eine ID vom System generiert.
+wenn er nicht gesetzt ist, wird eine ID vom System generiert.
 
 | Request Header Name | Beschreibung                    | Beispiel    |
 |---------------------|---------------------------------|-------------|
@@ -115,7 +115,7 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 ### POST Request
 
 	POST https://www.europace2.de/kreditsmart/kex/vorgang
-	X-Authentication: xxxxxxx
+	Authorization: Bearer xxxxxxx
 	Content-Type: application/json;charset=utf-8
 	{
 		"kundenbetreuer": {
@@ -141,7 +141,7 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 
 Wenn der Request nicht erfolgreich verarbeitet werden konnte, liefert die Schnittstelle einen Fehlercode, auf den die aufrufende Anwendung reagieren kann, zurück.
 
-Achtung: In diesem Fall wird kein Vorgang in **Kredit**Smart importiert und angelegt.
+Achtung: Im Fehlerfall wird kein Vorgang in **Kredit**Smart importiert und angelegt.
 
 | Fehlercode | Nachricht            | Erklärung                                                  |
 |------------|----------------------|------------------------------------------------------------|
