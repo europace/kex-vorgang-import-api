@@ -17,6 +17,7 @@ Unter https://github.com/hypoport/kreditsmart-kex-vorgang-api-schema liegt das z
 * [Request Format](#request-format)
 * [Vorgang](#vorgang)
    * [Partner](#partner)
+   * [Benachrichtigung](#benachrichtigung)
    * [Antragsteller](#antragsteller)
    * [Herkunft](#herkunft)
    * [Personendaten](#personendaten)
@@ -175,6 +176,7 @@ Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/
 		"bearbeiter": Partner,
 		"tippgeber": Partner,
 		"leadquelle": String,
+		"benachrichtigung": Benachrichtigung
 		"eigeneVorgangsnummer": String,
 		"baufiSmartVorgangsnummer": String,
 		"antragsteller1": Antragsteller,
@@ -193,6 +195,14 @@ Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
 	}
 
 Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12. 
+
+### Benachrichtigung
+
+    {
+       "aktiv": true | false
+    }
+    
+Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine E-Mail als Bestätigung.
 
 ### Antragsteller
 
