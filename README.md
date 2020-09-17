@@ -52,7 +52,7 @@ Unter https://github.com/hypoport/kreditsmart-kex-vorgang-api-schema liegt das z
       * [Fahrzeugkauf](#fahrzeugkauf)
    * [Response Format](#response-format)
    * [Nutzungsbedingungen](#nutzungsbedingungen)
-   
+
 
 
 ## Anlegen eines neuen Vorgangs
@@ -66,26 +66,26 @@ Die URL für das Anlegen von Echtgeschäftsvorgängen ist:
 Die URL für das Anlegen von Testvorgängen ist:
 
 	https://www.europace2.de/kreditsmart/kex/vorgang
-    
+
 Die Daten werden als JSON Dokument im Body des POST Requests übermittelt.
 
 Ein erfolgreicher Aufruf resultiert in einer Response mit dem HTTP Statuscode **201 CREATED**.
 
 ## Authentifizierung
 
-Für jeden Request ist eine Authentifizierung erforderlich. Die Authentifizierung erfolgt über den OAuth 2.0 Client-Credentials Flow. 
+Für jeden Request ist eine Authentifizierung erforderlich. Die Authentifizierung erfolgt über den OAuth 2.0 Client-Credentials Flow.
 
 | Request Header Name | Beschreibung           |
 |---------------------|------------------------|
 | Authorization       | OAuth 2.0 Bearer Token |
 
 
-Das Bearer Token kann über die [Authorization-API](https://github.com/europace/authorization-api) angefordert werden. 
-Dazu wird ein Client benötigt, der vorher von einer berechtigten Person über das Partnermanagement angelegt wurde. 
+Das Bearer Token kann über die [Authorization-API](https://github.com/europace/authorization-api) angefordert werden.
+Dazu wird ein Client benötigt, der vorher von einer berechtigten Person über das Partnermanagement angelegt wurde.
 Eine Anleitung dafür befindet sich im [Help Center](https://europace2.zendesk.com/hc/de/articles/360012514780).
 
 Damit der Client für diese API genutzt werden kann, muss im Partnermanagement die Berechtigung **Kreditsmartvorgänge schreiben** aktiviert sein.  
- 
+
 Schlägt die Authentifizierung fehl, erhält der Aufrufer eine HTTP Response mit Statuscode **401 UNAUTHORIZED**.
 
 Hat der Client keine Berechtigung die Resource abzurufen, erhält der Aufrufer eine HTTP Response mit Statuscode **403 FORBIDDEN**.
@@ -129,7 +129,7 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 			}
 		}
 	}
-    
+
 ### POST Response
 
 	201 CREATED
@@ -162,7 +162,7 @@ Für einen erfolgreichen Request gibt es derzeit nur ein definiertes Pflichtfeld
 
 Alle übermittelten Daten werden in **Kredit**Smart übernommen, mit Ausnahme von:
 
-* Angaben, die aufgrund eines abweichenden Formats nicht verstanden werden (z. B. "1" statt "true", "01.01.2016" statt "2016-01-01"), und 
+* Angaben, die aufgrund eines abweichenden Formats nicht verstanden werden (z. B. "1" statt "true", "01.01.2016" statt "2016-01-01"), und
 * Angaben, die aufgrund der Datenkonstellationen überflüssig bzw. unstimmig sind (z. B. Angabe beim 1. Antragsteller zu gemeinsamerHaushalt).
 
 
@@ -194,14 +194,14 @@ Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
 		"partnerId": String
 	}
 
-Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12. 
+Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
 
 ### Benachrichtigung
 
     {
        "aktiv": true | false
     }
-    
+
 Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine E-Mail als Bestätigung.
 
 ### Antragsteller
@@ -398,7 +398,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"ort": String,
 		"land": "ALPHA-2 Isocode"
 	}
-    
+
 
 ### Haushalt
 
@@ -460,7 +460,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"abloesen": true | false,
 		"iban": String,
 		"bic": String,
-		"kreditinstitut": String 
+		"kreditinstitut": String
 	}
 
 #### Kontokorrentkredit
@@ -485,9 +485,9 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"abloesen": true | false,
 		"iban": String,
 		"bic": String,
-		"kreditinstitut": String 
+		"kreditinstitut": String
 	}
-	
+
 #### Dispositionskredit
 
 	{
@@ -499,7 +499,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"abloesen": true | false,
 		"bic": String,
 		"iban": String,
-		"kreditinstitut": String 
+		"kreditinstitut": String
 	}			
 
 #### Leasing
@@ -519,7 +519,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"betrag": Decimal,
 		"gehoertZuAntragsteller": Antragstellerzuordnung
 	}
-				
+
 
 #### Sonstiger Vermögenswert
 
@@ -528,7 +528,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"betrag": Decimal,
 		"gehoertZuAntragsteller": Antragstellerzuordnung
 	}
-				
+
 
 #### Bank- und Sparguthaben
 
@@ -537,7 +537,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"betrag": Decimal,
 		"gehoertZuAntragsteller": Antragstellerzuordnung
 	}
-				
+
 #### Lebensversicherung
 
 
@@ -546,7 +546,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"praemieMonatlich": Decimal,
 		"gehoertZuAntragsteller": Antragstellerzuordnung
 	}
-				
+
 #### Bausparvertrag
 
 
@@ -562,14 +562,14 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"betragMonatlich": Decimal,
 		"gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
 	}
-				
+
 #### Sonstige Ausgabe und Mietausgabe
 
 	{
 		"betragMonatlich": Decimal,
 		"gehoertZuAntragsteller": Antragstellerzuordnung
 	}
-				
+
 #### Einkunft aus Nebentätigkeit
 
 	{
@@ -615,8 +615,8 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
 		"kindergeldFuer": "ERSTES_ODER_ZWEITES_KIND" | "DRITTES_KIND" | "AB_VIERTEM_KIND",
 		"unterhaltseinnahmenMonatlich": Decimal,
 		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}	
-				
+	}
+
 
 ### Finanzbedarf
 
@@ -664,5 +664,4 @@ Die Angaben werden als JSON im Body der Response gesendet.
 In *messages* werden nicht übernommene Angaben und andere Hinweise gesendet.
 
 ## Nutzungsbedingungen
-Die APIs werden unter folgenden [Nutzungsbedingungen](https://developer.europace.de/terms/) zur Verfügung gestellt.
-
+Die APIs werden unter folgenden [Nutzungsbedingungen](https://docs.api.europace.de/nutzungsbedingungen/) zur Verfügung gestellt.
