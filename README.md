@@ -120,7 +120,7 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 	Content-Type: application/json;charset=utf-8
 	{
 		"kundenbetreuer": {
-			partnerId: "TEST"
+			"partnerId": "TEST"
 		},
 		"antragsteller1": {
 			"personendaten": {
