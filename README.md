@@ -4,57 +4,6 @@ Die Schnittstelle ermöglicht das automatisierte Anlegen von Vorgängen in **Kre
 
 Unter https://github.com/europace/kex-vorgang-api-schema liegt das zugehörige JSON-Schema, das zur Codegenerierung genutzt werden kann.
 
-# Table of Contents
-
-* [Anlegen eines neuen Vorgangs](#anlegen-eines-neuen-vorgangs)
-* [Authentifizierung](#authentifizierung)
-* [TraceId zur Nachverfolgbarkeit von Requests](#traceid-zur-nachverfolgbarkeit-von-requests)
-* [Content-Type](#content-type)
-* [Beispiel](#beispiel)
-   * [POST Request](#post-request)
-   * [POST Response](#post-response)
-* [Fehlercodes](#fehlercodes)
-* [Request Format](#request-format)
-* [Vorgang](#vorgang)
-   * [Partner](#partner)
-   * [Benachrichtigung](#benachrichtigung)
-   * [Antragsteller](#antragsteller)
-   * [Herkunft](#herkunft)
-   * [Personendaten](#personendaten)
-   * [Wohnsituation](#wohnsituation)
-   * [Beschäftigung](#beschäftigung)
-      * [Arbeiter und Angestellter](#arbeiter-und-angestellter)
-      * [Arbeitsloser und Hausfrau](#arbeitsloser-und-hausfrau)
-      * [Selbstständiger und Freiberufler](#selbstständiger-und-freiberufler)
-      * [Beamter](#beamter)
-      * [Rentner](#rentner)
-      * [Arbeitgeber](#arbeitgeber)
-   * [Anschrift](#anschrift)
-   * [Haushalt](#haushalt)
-      * [Antragstellerzuordnung](#antragstellerzuordnung)
-      * [Ratenkredit, Geschäftskredit und Sonstige Verbindlichkeit](#ratenkredit-geschäftskredit-und-sonstige-verbindlichkeit)
-      * [Kontokorrentkredit](#kontokorrentkredit)
-      * [Kreditkarte](#kreditkarte)
-      * [Dispositionskredit](#dispositionskredit)
-      * [Leasing](#leasing)
-      * [Depotvermögen](#depotvermögen)
-      * [Sonstiger Vermögenswert](#sonstiger-vermögenswert)
-      * [Bank- und Sparguthaben](#bank--und-sparguthaben)
-      * [Lebensversicherung](#lebensversicherung)
-      * [Bausparvertrag](#bausparvertrag)
-      * [Private Krankenversicherung und Unterhaltsverpflichtung](#private-krankenversicherung-und-unterhaltsverpflichtung)
-      * [Sonstige Ausgabe und Mietausgabe](#sonstige-ausgabe-und-mietausgabe)
-      * [Einkunft aus Nebentätigkeit](#einkunft-aus-nebentätigkeit)
-      * [Ehegattenunterhalt, Sonstige Einnahme, Einkunft aus Kapitalvermögen und Unbefristete Zusatzrente](#ehegattenunterhalt-sonstige-einnahme-einkunft-aus-kapitalvermögen-und-unbefristete-zusatzrente)
-      * [Immobilie](#immobilie)
-      * [Kind](#kind)
-   * [Finanzbedarf](#finanzbedarf)
-      * [Fahrzeugkauf](#fahrzeugkauf)
-   * [Response Format](#response-format)
-   * [Nutzungsbedingungen](#nutzungsbedingungen)
-
-
-
 ## Anlegen eines neuen Vorgangs
 
 Neue Vorgänge können per **HTTP POST** angelegt werden.
