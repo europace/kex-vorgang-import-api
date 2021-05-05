@@ -572,7 +572,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
     {
         "fahrzeugkauf": Fahrzeugkauf,
         "finanzierungszweck": "UMSCHULDUNG" | "FAHRZEUGKAUF" | "MODERNISIEREN" | "FREIE_VERWENDUNG",
-        "finanzierungswunsch":             {
+        "finanzierungswunsch": {
             "laufzeitInMonaten": Integer,
             "ratenzahlungstermin": "MONATSENDE" | "MONATSMITTE",
             "provisionswunschInProzent": Decimal,
