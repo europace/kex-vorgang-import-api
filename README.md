@@ -298,7 +298,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
             "inProbezeit": true | false,
             "nettoeinkommenMonatlich": Decimal,
             "verbeamtetSeit": "YYYY-MM-DD",
-            "arbeitgeber":     Arbeitgeber,
+            "arbeitgeber": Arbeitgeber,
             "beschaeftigtSeit": "YYYY-MM-DD"
         },
         "vorherigesBeschaeftigungsverhaeltnis": {
@@ -420,7 +420,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
         "glaeubiger": String,
         "zinssatz": Decimal,
         "gehoertZuAntragsteller": Antragstellerzuordnung,
-    }            
+    } 
 
 #### Kreditkarte
 
@@ -449,7 +449,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
         "bic": String,
         "iban": String,
         "kreditinstitut": String
-    }            
+    }
 
 #### Leasing
 
@@ -503,7 +503,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
         "sparbeitragMonatlich": Decimal,
         "angesparterBetrag": Decimal,
         "gehoertZuAntragsteller": Antragstellerzuordnung
-    }                            
+    }
 
 #### Private Krankenversicherung und Unterhaltsverpflichtung
 
@@ -555,7 +555,7 @@ Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berück
                 "rateMonatlich": Decimal
             }
         ]
-    }            
+    }
 
 #### Kind
 
