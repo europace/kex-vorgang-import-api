@@ -14,7 +14,7 @@ Die URL für das Anlegen von Echtgeschäftsvorgängen ist:
 
 Die URL für das Anlegen von Testvorgängen ist:
 
-	https://www.europace2.de/kreditsmart/kex/vorgang
+    https://www.europace2.de/kreditsmart/kex/vorgang
 
 Die Daten werden als JSON Dokument im Body des POST Requests übermittelt.
 
@@ -64,28 +64,28 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 
 ### POST Request
 
-	POST https://www.europace2.de/kreditsmart/kex/vorgang
-	Authorization: Bearer xxxxxxx
-	Content-Type: application/json;charset=utf-8
-	{
-		"kundenbetreuer": {
-			"partnerId": "TEST"
-		},
-		"antragsteller1": {
-			"personendaten": {
-				"vorname": "Max",
-				"nachname": "Mustermann"
-			}
-		}
-	}
+    POST https://www.europace2.de/kreditsmart/kex/vorgang
+    Authorization: Bearer xxxxxxx
+    Content-Type: application/json;charset=utf-8
+    {
+        "kundenbetreuer": {
+            "partnerId": "TEST"
+        },
+        "antragsteller1": {
+            "personendaten": {
+                "vorname": "Max",
+                "nachname": "Mustermann"
+            }
+        }
+    }
 
 ### POST Response
 
-	201 CREATED
-	{
-		"vorgangsnummer": "AB1234",
-		"messages": []
-	}
+    201 CREATED
+    {
+        "vorgangsnummer": "AB1234",
+        "messages": []
+    }
 
 ## Fehlercodes
 
@@ -121,27 +121,27 @@ Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/
 ## Vorgang
 
     {
-		"kundenbetreuer": Partner,
-		"bearbeiter": Partner,
-		"tippgeber": Partner,
-		"leadquelle": String,
-		"benachrichtigung": Benachrichtigung
-		"eigeneVorgangsnummer": String,
-		"baufiSmartVorgangsnummer": String,
-		"antragsteller1": Antragsteller,
-		"antragsteller2": Antragsteller,
-		"haushalt": Haushalt,
-		"finanzbedarf": Finanzbedarf,
-		"kommentare": [ String ]
-	}
+        "kundenbetreuer": Partner,
+        "bearbeiter": Partner,
+        "tippgeber": Partner,
+        "leadquelle": String,
+        "benachrichtigung": Benachrichtigung
+        "eigeneVorgangsnummer": String,
+        "baufiSmartVorgangsnummer": String,
+        "antragsteller1": Antragsteller,
+        "antragsteller2": Antragsteller,
+        "haushalt": Haushalt,
+        "finanzbedarf": Finanzbedarf,
+        "kommentare": [ String ]
+    }
 
 Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
 
 ### Partner
 
-	{
-		"partnerId": String
-	}
+    {
+        "partnerId": String
+    }
 
 Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
 
@@ -156,448 +156,448 @@ Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine
 ### Antragsteller
 
     {
-		"herkunft": Herkunft,
-		"personendaten": Personendaten,
-		"wohnsituation": Wohnsituation,
-		"beschaeftigung": Beschäftigung
-	}
+        "herkunft": Herkunft,
+        "personendaten": Personendaten,
+        "wohnsituation": Wohnsituation,
+        "beschaeftigung": Beschäftigung
+    }
 
 ### Herkunft
 
     {
-		"arbeitserlaubnisVorhanden": true | false,
-		"aufenthaltBefristetBis": "YYYY-MM-DD",
-		"arbeitserlaubnisBefristetBis": "YYYY-MM-DD",
-		"inDeutschlandSeit": "YYYY-MM-DD",
-		"staatsangehoerigkeit": "ALPHA-2 Isocode",
-		"aufenthaltstitel": "VISUM" | "AUFENTHALTSERLAUBNIS" | "NIEDERLASSUNGSERLAUBNIS" | "ERLAUBNIS_ZUM_DAUERAUFENTHALT_EU",
-		"steuerId": String
-	}
+        "arbeitserlaubnisVorhanden": true | false,
+        "aufenthaltBefristetBis": "YYYY-MM-DD",
+        "arbeitserlaubnisBefristetBis": "YYYY-MM-DD",
+        "inDeutschlandSeit": "YYYY-MM-DD",
+        "staatsangehoerigkeit": "ALPHA-2 Isocode",
+        "aufenthaltstitel": "VISUM" | "AUFENTHALTSERLAUBNIS" | "NIEDERLASSUNGSERLAUBNIS" | "ERLAUBNIS_ZUM_DAUERAUFENTHALT_EU",
+        "steuerId": String
+    }
 
 ### Personendaten
 
     {
-		"titel": [ "DOKTOR" | "PROFESSOR" ]
-		"anrede": "FRAU" | "HERR",
-		"telefonGeschaeftlich": String,
-		"geburtsdatum": "YYYY-MM-DD",
-		"telefonPrivat": String,
-		"geburtsort": String,
-		"geburtsland": "ALPHA-2 Isocode"
-		"vorname": String,
-		"geburtsname": String,
-		"nachname": String,
-		"familienstand": "LEDIG" | "VERHEIRATET" | "GESCHIEDEN" | "VERWITWET" | "GETRENNT_LEBEND" | "EHEAEHNLICHE_LEBENSGEMEINSCHAFT" | "EINGETRAGENE_LEBENSPARTNERSCHAFT",
-		"email": String
-	}
+        "titel": [ "DOKTOR" | "PROFESSOR" ]
+        "anrede": "FRAU" | "HERR",
+        "telefonGeschaeftlich": String,
+        "geburtsdatum": "YYYY-MM-DD",
+        "telefonPrivat": String,
+        "geburtsort": String,
+        "geburtsland": "ALPHA-2 Isocode"
+        "vorname": String,
+        "geburtsname": String,
+        "nachname": String,
+        "familienstand": "LEDIG" | "VERHEIRATET" | "GESCHIEDEN" | "VERWITWET" | "GETRENNT_LEBEND" | "EHEAEHNLICHE_LEBENSGEMEINSCHAFT" | "EINGETRAGENE_LEBENSPARTNERSCHAFT",
+        "email": String
+    }
 
 ### Wohnsituation
 
-	{
-		"anschrift": {
-			"strasse": String,
-			"hausnummer": String,
-			"plz": String,
-			"ort": String,
-			"wohnhaftSeit": "YYYY-MM-DD"
-		},
-		"gemeinsamerHaushalt": true | false,
-		"wohnart": "ZUR_MIETE" | "ZUR_UNTERMIETE" | "IM_EIGENEN_HAUS" | "BEI_DEN_ELTERN",
-		"anzahlPersonenImHaushalt": Integer,
-		"anzahlPkw": Integer,
-		"voranschrift": {
-			"strasse": String,
-			"hausnummer": String,
-			"plz": String,
-			"ort": String,
-			"wohnhaftSeit": "YYYY-MM-DD"
-		}
-	}
+    {
+        "anschrift": {
+            "strasse": String,
+            "hausnummer": String,
+            "plz": String,
+            "ort": String,
+            "wohnhaftSeit": "YYYY-MM-DD"
+        },
+        "gemeinsamerHaushalt": true | false,
+        "wohnart": "ZUR_MIETE" | "ZUR_UNTERMIETE" | "IM_EIGENEN_HAUS" | "BEI_DEN_ELTERN",
+        "anzahlPersonenImHaushalt": Integer,
+        "anzahlPkw": Integer,
+        "voranschrift": {
+            "strasse": String,
+            "hausnummer": String,
+            "plz": String,
+            "ort": String,
+            "wohnhaftSeit": "YYYY-MM-DD"
+        }
+    }
 
 Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant.
 
 ### Beschäftigung
 
 
-	{
-		"beschaeftigungsart": "ANGESTELLTER" | "ARBEITER" | "ARBEITSLOSER" | "BEAMTER" | "FREIBERUFLER" | "HAUSFRAU" | "RENTNER" | "SELBSTSTAENDIGER",
-		"arbeiter": Arbeiter,
-		"angestellter": Angestellter,				
-		"arbeitsloser": Arbeitsloser,
-		"beamter": Beamter,
-		"selbststaendiger": Selbstständiger,
-		"freiberufler": Freiberufler,
-		"hausfrau": Hausfrau,
-		"rentner": Rentner
-	}
+    {
+        "beschaeftigungsart": "ANGESTELLTER" | "ARBEITER" | "ARBEITSLOSER" | "BEAMTER" | "FREIBERUFLER" | "HAUSFRAU" | "RENTNER" | "SELBSTSTAENDIGER",
+        "arbeiter": Arbeiter,
+        "angestellter": Angestellter,                
+        "arbeitsloser": Arbeitsloser,
+        "beamter": Beamter,
+        "selbststaendiger": Selbstständiger,
+        "freiberufler": Freiberufler,
+        "hausfrau": Hausfrau,
+        "rentner": Rentner
+    }
 
 Die zu befüllende Felder zur Beschäftigung ist abhängig von der ausgewählten Beschäftigungsart.<BR>Ist keine Beschäftigungsart gesetzt bzw. andere Felder, die nicht zur Beschäftigungsart passen, befüllt, werden sie ignoriert.
 Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berücksichtigt
 
 #### Arbeiter und Angestellter
 
-	{
-		"beschaeftigungsverhaeltnis": {
-			"berufsbezeichnung": String,
-			"nettoeinkommenMonatlich": Decimal,
-			"arbeitgeber": Arbeitgeber,
-			"beschaeftigtSeit": "YYYY-MM-DD",
-			"befristung": "BEFRISTET" | "UNBEFRISTET",
-			"befristetBis": "YYYY-MM-DD",
-			"inProbezeit": true | false
-		},
-		"vorherigesBeschaeftigungsverhaeltnis": {
-			"arbeitgeber": {
-				"name": String,
-				"anschrift": {
-					"plz": String,
-					"ort": String
-				}
-			},
-			"beschaeftigtSeit": "YYYY-MM-DD",
-			"beschaeftigtBis": "YYYY-MM-DD"
-		}
-	}
+    {
+        "beschaeftigungsverhaeltnis": {
+            "berufsbezeichnung": String,
+            "nettoeinkommenMonatlich": Decimal,
+            "arbeitgeber": Arbeitgeber,
+            "beschaeftigtSeit": "YYYY-MM-DD",
+            "befristung": "BEFRISTET" | "UNBEFRISTET",
+            "befristetBis": "YYYY-MM-DD",
+            "inProbezeit": true | false
+        },
+        "vorherigesBeschaeftigungsverhaeltnis": {
+            "arbeitgeber": {
+                "name": String,
+                "anschrift": {
+                    "plz": String,
+                    "ort": String
+                }
+            },
+            "beschaeftigtSeit": "YYYY-MM-DD",
+            "beschaeftigtBis": "YYYY-MM-DD"
+        }
+    }
 
 #### Arbeitsloser und Hausfrau
 
-	{
-		"sonstigesEinkommenMonatlich": Decimal
-	}
+    {
+        "sonstigesEinkommenMonatlich": Decimal
+    }
 
 #### Selbstständiger und Freiberufler
 
-	{
-		"berufsbezeichnung": String,
-		"selbststaendigSeit": "YYYY-MM-DD",
-		"firma": {
-			"name": String,
-			"branche": Branche,
-			"anschrift": Anschrift
-		},
-		"nettoeinkommenJaehrlich": Decimal,
-		"bruttoEinkommenLaufendesJahr": Decimal,
-  		"einkommenssteuerLaufendesJahr": Decimal,
-  		"abschreibungenLaufendesJahr": Decimal,
-		"bruttoEinkommenLetztesJahr": Decimal,
-		"einkommenssteuerLetztesJahr": Decimal,
-		"abschreibungenLetztesJahr": Decimal,
-		"einkommenssteuerVor2Jahren": Decimal,
-		"bruttoEinkommenVor2Jahren": Decimal,
-		"abschreibungenVor2Jahren": Decimal,
-		"bruttoEinkommenVor3Jahren": Decimal,
-		"einkommenssteuerVor3Jahren": Decimal,
-		"abschreibungenVor3Jahren": Decimal
-	}
+    {
+        "berufsbezeichnung": String,
+        "selbststaendigSeit": "YYYY-MM-DD",
+        "firma": {
+            "name": String,
+            "branche": Branche,
+            "anschrift": Anschrift
+        },
+        "nettoeinkommenJaehrlich": Decimal,
+        "bruttoEinkommenLaufendesJahr": Decimal,
+          "einkommenssteuerLaufendesJahr": Decimal,
+          "abschreibungenLaufendesJahr": Decimal,
+        "bruttoEinkommenLetztesJahr": Decimal,
+        "einkommenssteuerLetztesJahr": Decimal,
+        "abschreibungenLetztesJahr": Decimal,
+        "einkommenssteuerVor2Jahren": Decimal,
+        "bruttoEinkommenVor2Jahren": Decimal,
+        "abschreibungenVor2Jahren": Decimal,
+        "bruttoEinkommenVor3Jahren": Decimal,
+        "einkommenssteuerVor3Jahren": Decimal,
+        "abschreibungenVor3Jahren": Decimal
+    }
 
 #### Beamter
 
-	{
-		"beschaeftigungsverhaeltnis": {
-			"berufsbezeichnung": String,
-			"inProbezeit": true | false,
-			"nettoeinkommenMonatlich": Decimal,
-			"verbeamtetSeit": "YYYY-MM-DD",
-			"arbeitgeber": 	Arbeitgeber,
-			"beschaeftigtSeit": "YYYY-MM-DD"
-		},
-		"vorherigesBeschaeftigungsverhaeltnis": {
-			"arbeitgeber": {
-				"name": String,
-				"anschrift": {
-					"plz": String,
-					"ort": String
-				}
-			},
-			"beschaeftigtSeit": "YYYY-MM-DD",
-			"beschaeftigtBis": "YYYY-MM-DD"
-		}
-	}
+    {
+        "beschaeftigungsverhaeltnis": {
+            "berufsbezeichnung": String,
+            "inProbezeit": true | false,
+            "nettoeinkommenMonatlich": Decimal,
+            "verbeamtetSeit": "YYYY-MM-DD",
+            "arbeitgeber":     Arbeitgeber,
+            "beschaeftigtSeit": "YYYY-MM-DD"
+        },
+        "vorherigesBeschaeftigungsverhaeltnis": {
+            "arbeitgeber": {
+                "name": String,
+                "anschrift": {
+                    "plz": String,
+                    "ort": String
+                }
+            },
+            "beschaeftigtSeit": "YYYY-MM-DD",
+            "beschaeftigtBis": "YYYY-MM-DD"
+        }
+    }
 
 #### Rentner
 
-	{
-		"staatlicheRenteMonatlich": Decimal,
-		"rentnerSeit": "YYYY-MM-DD",
-		"rentenversicherung": {
-			"name": String,
-			"anschrift": {
-				"strasse": String,
-				"hausnummer": String,
-				"plz": String,
-				"ort": String
-			}
-		}
-	}
+    {
+        "staatlicheRenteMonatlich": Decimal,
+        "rentnerSeit": "YYYY-MM-DD",
+        "rentenversicherung": {
+            "name": String,
+            "anschrift": {
+                "strasse": String,
+                "hausnummer": String,
+                "plz": String,
+                "ort": String
+            }
+        }
+    }
 
 #### Arbeitgeber
 
-	{
-		"name": String,
-		"anschrift": Anschrift,
-		"branche": "BAUGEWERBE" | "DIENSTLEISTUNGEN" | "ENERGIE_WASSERVERSORGUNG_BERGBAU" | "ERZIEHUNG_UNTERRICHT" | "GEBIETSKOERPERSCHAFTEN" | "GEMEINNUETZIGE_ORGANISATION" | "GESUNDHEIT_SOZIALWESEN" | "HANDEL" | "HOTEL_GASTRONOMIE" | "INFORMATION_KOMMUNIKATION" | "KREDITINSTITUTE_VERSICHERUNGEN" | "KULTUR_SPORT_UNTERHALTUNG" | "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI" | "OEFFENTLICHER_DIENST" | "PRIVATE_HAUSHALTE" | "VERARBEITENDES_GEWERBE" | "VERKEHR_LOGISTIK"
-	}
+    {
+        "name": String,
+        "anschrift": Anschrift,
+        "branche": "BAUGEWERBE" | "DIENSTLEISTUNGEN" | "ENERGIE_WASSERVERSORGUNG_BERGBAU" | "ERZIEHUNG_UNTERRICHT" | "GEBIETSKOERPERSCHAFTEN" | "GEMEINNUETZIGE_ORGANISATION" | "GESUNDHEIT_SOZIALWESEN" | "HANDEL" | "HOTEL_GASTRONOMIE" | "INFORMATION_KOMMUNIKATION" | "KREDITINSTITUTE_VERSICHERUNGEN" | "KULTUR_SPORT_UNTERHALTUNG" | "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI" | "OEFFENTLICHER_DIENST" | "PRIVATE_HAUSHALTE" | "VERARBEITENDES_GEWERBE" | "VERKEHR_LOGISTIK"
+    }
 
 ### Anschrift
 
-	{
-		"strasse": String,
-		"hausnummer": String,
-		"plz": String,
-		"ort": String,
-		"land": "ALPHA-2 Isocode"
-	}
+    {
+        "strasse": String,
+        "hausnummer": String,
+        "plz": String,
+        "ort": String,
+        "land": "ALPHA-2 Isocode"
+    }
 
 
 ### Haushalt
 
     {
-		"verbindlichkeiten": {
-			"geschaeftskredite": [ Geschäftskredit ],
-			"kontokorrentkredite": [ Kontokorrentkredit ],
-			"kreditkarten": [ Kreditkarte ],
-			"dispositionskredite": [ Dispositionskredit ],
-			"ratenkredite": [ Ratenkredit ],
-			"leasings": [ Leasing ],
-			"sonstigeVerbindlichkeiten": [ Sonstige Verbindlichkeit ]
-		},
-		"vermoegen": {
-			"depotvermoegen": [ Depotvermögen ],
-			"sonstigeVermoegenswerte": [ Sonstiger Vermögenswert ],
-			"bankUndSparguthaben": [ Bank- und Sparguthaben ],
-			"lebensversicherungen": [ Lebensversicherung ],
-			"bausparvertraege": [ Bausparvertrag ]
-		},
-		"ausgaben": {
-			"privateKrankenversicherungen": [ Private Krankenversicherung ],
-			"unterhaltsverpflichtungen": [ Unterhaltsverpflichtung ],
-			"sonstigeAusgaben": [ Sonstige Ausgabe ],
-			"mietausgaben": [ Mietausgabe ]
-		},
-		"einnahmen": {
-			"einkuenfteAusNebentaetigkeit": [ Einkunft aus Nebentätigkeit ],
-			"ehegattenunterhalt": [ Ehegattenunterhalt ],
-			"sonstigeEinnahmen": [ Sonstige Einnahme ],
-			"einkuenfteAusKapitalvermoegen": [ Einkunft aus Kapitalvermögen ],
-			"unbefristeteZusatzrenten": [ Unbefristete Zusatzrente ]
-		},
-		"immobilien": [ Immobilie ],
-		"kinder": [ kind ],
-		"kontoverbindung": {
-			"iban": String,
-			"bic": String,
-			"kreditinstitut": String,
-			"gehoertZuAntragsteller": Antragstellerzuordnung
-		}
-	}
+        "verbindlichkeiten": {
+            "geschaeftskredite": [ Geschäftskredit ],
+            "kontokorrentkredite": [ Kontokorrentkredit ],
+            "kreditkarten": [ Kreditkarte ],
+            "dispositionskredite": [ Dispositionskredit ],
+            "ratenkredite": [ Ratenkredit ],
+            "leasings": [ Leasing ],
+            "sonstigeVerbindlichkeiten": [ Sonstige Verbindlichkeit ]
+        },
+        "vermoegen": {
+            "depotvermoegen": [ Depotvermögen ],
+            "sonstigeVermoegenswerte": [ Sonstiger Vermögenswert ],
+            "bankUndSparguthaben": [ Bank- und Sparguthaben ],
+            "lebensversicherungen": [ Lebensversicherung ],
+            "bausparvertraege": [ Bausparvertrag ]
+        },
+        "ausgaben": {
+            "privateKrankenversicherungen": [ Private Krankenversicherung ],
+            "unterhaltsverpflichtungen": [ Unterhaltsverpflichtung ],
+            "sonstigeAusgaben": [ Sonstige Ausgabe ],
+            "mietausgaben": [ Mietausgabe ]
+        },
+        "einnahmen": {
+            "einkuenfteAusNebentaetigkeit": [ Einkunft aus Nebentätigkeit ],
+            "ehegattenunterhalt": [ Ehegattenunterhalt ],
+            "sonstigeEinnahmen": [ Sonstige Einnahme ],
+            "einkuenfteAusKapitalvermoegen": [ Einkunft aus Kapitalvermögen ],
+            "unbefristeteZusatzrenten": [ Unbefristete Zusatzrente ]
+        },
+        "immobilien": [ Immobilie ],
+        "kinder": [ kind ],
+        "kontoverbindung": {
+            "iban": String,
+            "bic": String,
+            "kreditinstitut": String,
+            "gehoertZuAntragsteller": Antragstellerzuordnung
+        }
+    }
 
 #### Antragstellerzuordnung
 
-	"ANTRAGSTELLER_1" | "ANTRAGSTELLER_2" | "BEIDE"
+    "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2" | "BEIDE"
 
 #### Ratenkredit, Geschäftskredit und Sonstige Verbindlichkeit
 
-	{
-		"rateMonatlich": Decimal,
-		"schlussrate": Decimal,
-		"datumErsteZahlung": "YYYY-MM-DD",
-		"datumLetzteRate": "YYYY-MM-DD",
-		"restschuld": Decimal,
-		"urspruenglicherKreditbetrag": Decimal,
-		"glaeubiger": String,
-		"gehoertZuAntragsteller": Antragstellerzuordnung,
-		"abloesen": true | false,
-		"iban": String,
-		"bic": String,
-		"kreditinstitut": String
-	}
+    {
+        "rateMonatlich": Decimal,
+        "schlussrate": Decimal,
+        "datumErsteZahlung": "YYYY-MM-DD",
+        "datumLetzteRate": "YYYY-MM-DD",
+        "restschuld": Decimal,
+        "urspruenglicherKreditbetrag": Decimal,
+        "glaeubiger": String,
+        "gehoertZuAntragsteller": Antragstellerzuordnung,
+        "abloesen": true | false,
+        "iban": String,
+        "bic": String,
+        "kreditinstitut": String
+    }
 
 #### Kontokorrentkredit
 
-	{
-		"beanspruchterBetrag": Decimal,
-		"verfuegungsrahmen": Decimal,
-		"glaeubiger": String,
-		"zinssatz": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung,
-	}			
+    {
+        "beanspruchterBetrag": Decimal,
+        "verfuegungsrahmen": Decimal,
+        "glaeubiger": String,
+        "zinssatz": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung,
+    }            
 
 #### Kreditkarte
 
-	{
-		"beanspruchterBetrag": Decimal,
-		"verfuegungsrahmen": Decimal,
-		"rateMonatlich": Decimal,
-		"glaeubiger": String,
-		"zinssatz": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung,
-		"abloesen": true | false,
-		"iban": String,
-		"bic": String,
-		"kreditinstitut": String
-	}
+    {
+        "beanspruchterBetrag": Decimal,
+        "verfuegungsrahmen": Decimal,
+        "rateMonatlich": Decimal,
+        "glaeubiger": String,
+        "zinssatz": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung,
+        "abloesen": true | false,
+        "iban": String,
+        "bic": String,
+        "kreditinstitut": String
+    }
 
 #### Dispositionskredit
 
-	{
-		"beanspruchterBetrag": Decimal,
-		"verfuegungsrahmen": Decimal,
-		"glaeubiger": String,
-		"zinssatz": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung,
-		"abloesen": true | false,
-		"bic": String,
-		"iban": String,
-		"kreditinstitut": String
-	}			
+    {
+        "beanspruchterBetrag": Decimal,
+        "verfuegungsrahmen": Decimal,
+        "glaeubiger": String,
+        "zinssatz": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung,
+        "abloesen": true | false,
+        "bic": String,
+        "iban": String,
+        "kreditinstitut": String
+    }            
 
 #### Leasing
 
-	{
-		"rateMonatlich": Decimal,
-		"schlussrate": Decimal,
-		"datumLetzteRate": "YYYY-MM-DD",
-		"glaeubiger": String,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}
+    {
+        "rateMonatlich": Decimal,
+        "schlussrate": Decimal,
+        "datumLetzteRate": "YYYY-MM-DD",
+        "glaeubiger": String,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }
 
 #### Depotvermögen
 
 
-	{
-		"betrag": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}
+    {
+        "betrag": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }
 
 
 #### Sonstiger Vermögenswert
 
 
-	{
-		"betrag": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}
+    {
+        "betrag": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }
 
 
 #### Bank- und Sparguthaben
 
 
-	{
-		"betrag": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}
+    {
+        "betrag": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }
 
 #### Lebensversicherung
 
 
-	{
-		"rueckkaufswert": Decimal,
-		"praemieMonatlich": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}
+    {
+        "rueckkaufswert": Decimal,
+        "praemieMonatlich": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }
 
 #### Bausparvertrag
 
 
-	{
-		"sparbeitragMonatlich": Decimal,
-		"angesparterBetrag": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}							
+    {
+        "sparbeitragMonatlich": Decimal,
+        "angesparterBetrag": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }                            
 
 #### Private Krankenversicherung und Unterhaltsverpflichtung
 
-	{
-		"betragMonatlich": Decimal,
-		"gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
-	}
+    {
+        "betragMonatlich": Decimal,
+        "gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
+    }
 
 #### Sonstige Ausgabe und Mietausgabe
 
-	{
-		"betragMonatlich": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}
+    {
+        "betragMonatlich": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }
 
 #### Einkunft aus Nebentätigkeit
 
-	{
-		"betragMonatlich": Decimal,
-		"beginnDerTaetigkeit": "YYYY-MM-DD",
-		"gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
-	}
+    {
+        "betragMonatlich": Decimal,
+        "beginnDerTaetigkeit": "YYYY-MM-DD",
+        "gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
+    }
 
 #### Ehegattenunterhalt, Sonstige Einnahme, Einkunft aus Kapitalvermögen und Unbefristete Zusatzrente
 
-	{
-		"betragMonatlich": Decimal,
-		"gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
-	}
+    {
+        "betragMonatlich": Decimal,
+        "gehoertZuAntragsteller": "ANTRAGSTELLER_1" | "ANTRAGSTELLER_2"
+    }
 
 
 #### Immobilie
 
-	{
-		"mieteinnahmenWarmMonatlich": Decimal,
-		"vermieteteWohnflaeche": Integer,
-		"gehoertZuAntragsteller": Antragstellerzuordnung,
-		"nebenkostenMonatlich": Decimal,
-		"wert": Decimal,
-		"nutzungsart": "EIGENGENUTZT" | "VERMIETET" | "EIGENGENUTZT_UND_VERMIETET",
-		"mieteinnahmenKaltMonatlich": Decimal,
-		"immobilienart": "EIGENTUMSWOHNUNG" | "EINFAMILIENHAUS" | "MEHRFAMILIENHAUS" | "BUEROGEBAEUDE",
-		"bezeichnung": String,
-		"wohnflaeche": Integer,
-		"darlehen": [
-			{
-				"restschuld": Decimal,
-				"zinsbindungBis": "YYYY-MM-DD",
-				"rateMonatlich": Decimal
-			}
-		]
-	}			
+    {
+        "mieteinnahmenWarmMonatlich": Decimal,
+        "vermieteteWohnflaeche": Integer,
+        "gehoertZuAntragsteller": Antragstellerzuordnung,
+        "nebenkostenMonatlich": Decimal,
+        "wert": Decimal,
+        "nutzungsart": "EIGENGENUTZT" | "VERMIETET" | "EIGENGENUTZT_UND_VERMIETET",
+        "mieteinnahmenKaltMonatlich": Decimal,
+        "immobilienart": "EIGENTUMSWOHNUNG" | "EINFAMILIENHAUS" | "MEHRFAMILIENHAUS" | "BUEROGEBAEUDE",
+        "bezeichnung": String,
+        "wohnflaeche": Integer,
+        "darlehen": [
+            {
+                "restschuld": Decimal,
+                "zinsbindungBis": "YYYY-MM-DD",
+                "rateMonatlich": Decimal
+            }
+        ]
+    }            
 
 #### Kind
 
-	{
-		"name": String,
-		"kindergeldFuer": "ERSTES_ODER_ZWEITES_KIND" | "DRITTES_KIND" | "AB_VIERTEM_KIND",
-		"unterhaltseinnahmenMonatlich": Decimal,
-		"gehoertZuAntragsteller": Antragstellerzuordnung
-	}
+    {
+        "name": String,
+        "kindergeldFuer": "ERSTES_ODER_ZWEITES_KIND" | "DRITTES_KIND" | "AB_VIERTEM_KIND",
+        "unterhaltseinnahmenMonatlich": Decimal,
+        "gehoertZuAntragsteller": Antragstellerzuordnung
+    }
 
 
 ### Finanzbedarf
 
     {
-		"fahrzeugkauf": Fahrzeugkauf,
-		"finanzierungszweck": "UMSCHULDUNG" | "FAHRZEUGKAUF" | "MODERNISIEREN" | "FREIE_VERWENDUNG",
-		"finanzierungswunsch": 			{
-			"laufzeitInMonaten": Integer,
-			"ratenzahlungstermin": "MONATSENDE" | "MONATSMITTE",
-			"provisionswunschInProzent": Decimal,
-			"kreditbetrag": Decimal,
-			"rateMonatlich": Decimal
-		},
-		"ratenschutz": {
-			"versicherteRisikenAntragsteller2": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ],
-			"versicherteRisikenAntragsteller1": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ]
-		}
-	}
+        "fahrzeugkauf": Fahrzeugkauf,
+        "finanzierungszweck": "UMSCHULDUNG" | "FAHRZEUGKAUF" | "MODERNISIEREN" | "FREIE_VERWENDUNG",
+        "finanzierungswunsch":             {
+            "laufzeitInMonaten": Integer,
+            "ratenzahlungstermin": "MONATSENDE" | "MONATSMITTE",
+            "provisionswunschInProzent": Decimal,
+            "kreditbetrag": Decimal,
+            "rateMonatlich": Decimal
+        },
+        "ratenschutz": {
+            "versicherteRisikenAntragsteller2": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ],
+            "versicherteRisikenAntragsteller1": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ]
+        }
+    }
 
 #### Fahrzeugkauf
 
-	{
-		"modell": String,
-		"marke": String,
-		"kaufpreis": Decimal,
-		"erstzulassungsdatum": "YYYY-MM-DD",
-		"laufleistung": Integer,
-		"kw": Integer,
-		"beglicheneKosten": Decimal,
-		"ps": Integer,
-		"anbieter": "HAENDLER" | "PRIVAT"
-	}
+    {
+        "modell": String,
+        "marke": String,
+        "kaufpreis": Decimal,
+        "erstzulassungsdatum": "YYYY-MM-DD",
+        "laufleistung": Integer,
+        "kw": Integer,
+        "beglicheneKosten": Decimal,
+        "ps": Integer,
+        "anbieter": "HAENDLER" | "PRIVAT"
+    }
 
 Fahrzeugkauf wird nur ausgewertet, wenn als Finanzierungszweck "FAHRZEUGKAUF" gesetzt ist.
 
@@ -605,10 +605,10 @@ Fahrzeugkauf wird nur ausgewertet, wenn als Finanzierungszweck "FAHRZEUGKAUF" ge
 
 Die Angaben werden als JSON im Body der Response gesendet.
 
-	{
-		"vorgangsnummer": String,
-		"messages": [ String ]
-	}
+    {
+        "vorgangsnummer": String,
+        "messages": [ String ]
+    }
 
 In *messages* werden nicht übernommene Angaben und andere Hinweise gesendet.
 
