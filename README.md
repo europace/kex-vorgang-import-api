@@ -10,11 +10,11 @@ Neue Vorgänge können per **HTTP POST** angelegt werden.
 
 Die URL für das Anlegen von Echtgeschäftsvorgängen ist:
 
-    https://www.europace2.de/kreditsmart/kex/vorgang?environment=PRODUCTION
+    https://kex-vorgang-import.ratenkredit.api.europace.de/vorgang?environment=PRODUCTION
 
 Die URL für das Anlegen von Testvorgängen ist:
 
-    https://www.europace2.de/kreditsmart/kex/vorgang
+    https://kex-vorgang-import.ratenkredit.api.europace.de/vorgang
 
 Die Daten werden als JSON Dokument im Body des POST Requests übermittelt.
 
@@ -64,7 +64,7 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
 
 ### POST Request
 
-    POST https://www.europace2.de/kreditsmart/kex/vorgang
+    POST https://kex-vorgang-import.ratenkredit.api.europace.de/vorgang
     Authorization: Bearer xxxxxxx
     Content-Type: application/json;charset=utf-8
     {
