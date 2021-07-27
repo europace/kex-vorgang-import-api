@@ -95,7 +95,10 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
     201 CREATED
     {
         "vorgangsnummer": "AB1234",
-        "messages": []
+        "messages": [],
+        "antragsteller1": {
+            "id": "abcd123-xyz"
+        }
     }
 
 ## Fehlercodes
@@ -606,10 +609,18 @@ Die Angaben werden als JSON im Body der Response gesendet.
 
     {
         "vorgangsnummer": String,
-        "messages": [ String ]
+        "messages": [ String ],
+        "antragsteller1": {
+            "id": String
+        },
+        "antragsteller2": {
+            "id": String
+        }
     }
 
 In *messages* werden nicht übernommene Angaben und andere Hinweise gesendet.
+
+Das Feld `antragsteller2` gibt es nur, wenn ein Vorgang mit zwei Antragstellern angelegt wurde.
 
 ## Nutzungsbedingungen
 
