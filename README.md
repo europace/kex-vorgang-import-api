@@ -252,7 +252,7 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
         "beschaeftigungsverhaeltnis": {
             "berufsbezeichnung": String,
             "nettoeinkommenMonatlich": Decimal,
-            "arbeitgeber": Arbeitgeber,
+            "arbeitgeber": Firma,
             "beschaeftigtSeit": "YYYY-MM-DD",
             "befristung": "BEFRISTET" | "UNBEFRISTET",
             "befristetBis": "YYYY-MM-DD",
@@ -282,11 +282,7 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
     {
         "berufsbezeichnung": String,
         "selbststaendigSeit": "YYYY-MM-DD",
-        "firma": {
-            "name": String,
-            "branche": Branche,
-            "anschrift": Anschrift
-        },
+        "firma": Firma,
         "nettoeinkommenJaehrlich": Decimal,
         "bruttoEinkommenLaufendesJahr": Decimal,
         "einkommenssteuerLaufendesJahr": Decimal,
@@ -342,7 +338,7 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
         }
     }
 
-#### Arbeitgeber
+#### Firma
 
     {
         "name": String,
