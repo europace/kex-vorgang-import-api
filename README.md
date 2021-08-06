@@ -229,7 +229,7 @@ Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine
 
 Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant.
 
-### Beschäftigung
+### Beschaeftigung
 
     {
         "beschaeftigungsart": "ANGESTELLTER" | "ARBEITER" | "ARBEITSLOSER" | "BEAMTER" | "FREIBERUFLER" | "HAUSFRAU" | "RENTNER" | "SELBSTSTAENDIGER",
@@ -243,10 +243,11 @@ Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant.
         "rentner": Rentner
     }
 
-Die zu befüllende Felder zur Beschäftigung ist abhängig von der ausgewählten Beschäftigungsart.<BR>Ist keine Beschäftigungsart gesetzt bzw. andere Felder, die nicht zur Beschäftigungsart passen,
-befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wird der Knoten *arbeiter* berücksichtigt
+Die `Beschaeftigungsart` bestimmt die Beschäftigung und damit das dazu korrespondierende Feld. Beispielsweise wird für die `beschaeftigungsart=ARBEITER`
+die Daten unter dem Knoten `arbeiter` genutzt, bei der `beschaeftigungsart=BEAMTER` entsprechend der Knoten `beamter`. Werden darüber hinaus weitere Felder befüllt so werden diese ignoriert.<BR/>
+Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsart passende Knoten nicht befüllt, werden alle Felder ignoriert.
 
-#### Arbeiter und Angestellter
+#### Arbeiter
 
     {
         "beschaeftigungsverhaeltnis": {
@@ -259,25 +260,56 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
             "inProbezeit": true | false
         },
         "vorherigesBeschaeftigungsverhaeltnis": {
-            "arbeitgeber": {
-                "name": String,
-                "anschrift": {
-                    "plz": String,
-                    "ort": String
-                }
-            },
+            "arbeitgeber": Firma
             "beschaeftigtSeit": "YYYY-MM-DD",
             "beschaeftigtBis": "YYYY-MM-DD"
         }
     }
 
-#### Arbeitsloser und Hausfrau
+#### Angestellter
+
+    {
+        "beschaeftigungsverhaeltnis": {
+            "berufsbezeichnung": String,
+            "nettoeinkommenMonatlich": Decimal,
+            "arbeitgeber": Firma,
+            "beschaeftigtSeit": "YYYY-MM-DD",
+            "befristung": "BEFRISTET" | "UNBEFRISTET",
+            "befristetBis": "YYYY-MM-DD",
+            "inProbezeit": true | false
+        },
+        "vorherigesBeschaeftigungsverhaeltnis": {
+            "arbeitgeber": Firma,
+            "beschaeftigtSeit": "YYYY-MM-DD",
+            "beschaeftigtBis": "YYYY-MM-DD"
+        }
+    }
+
+#### Arbeitsloser
 
     {
         "sonstigesEinkommenMonatlich": Decimal
     }
 
-#### Selbstständiger und Freiberufler
+#### Beamter
+
+    {
+        "beschaeftigungsverhaeltnis": {
+            "berufsbezeichnung": String,
+            "inProbezeit": true | false,
+            "nettoeinkommenMonatlich": Decimal,
+            "verbeamtetSeit": "YYYY-MM-DD",
+            "arbeitgeber": Firma,
+            "beschaeftigtSeit": "YYYY-MM-DD"
+        },
+        "vorherigesBeschaeftigungsverhaeltnis": {
+            "arbeitgeber": Firma,
+            "beschaeftigtSeit": "YYYY-MM-DD",
+            "beschaeftigtBis": "YYYY-MM-DD"
+        }
+    }
+
+#### Selbstständiger
 
     {
         "berufsbezeichnung": String,
@@ -298,28 +330,31 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
         "abschreibungenVor3Jahren": Decimal
     }
 
-#### Beamter
+#### Freiberufler
 
     {
-        "beschaeftigungsverhaeltnis": {
-            "berufsbezeichnung": String,
-            "inProbezeit": true | false,
-            "nettoeinkommenMonatlich": Decimal,
-            "verbeamtetSeit": "YYYY-MM-DD",
-            "arbeitgeber": Arbeitgeber,
-            "beschaeftigtSeit": "YYYY-MM-DD"
-        },
-        "vorherigesBeschaeftigungsverhaeltnis": {
-            "arbeitgeber": {
-                "name": String,
-                "anschrift": {
-                    "plz": String,
-                    "ort": String
-                }
-            },
-            "beschaeftigtSeit": "YYYY-MM-DD",
-            "beschaeftigtBis": "YYYY-MM-DD"
-        }
+        "berufsbezeichnung": String,
+        "selbststaendigSeit": "YYYY-MM-DD",
+        "firma": Firma,
+        "nettoeinkommenJaehrlich": Decimal,
+        "bruttoEinkommenLaufendesJahr": Decimal,
+        "einkommenssteuerLaufendesJahr": Decimal,
+        "abschreibungenLaufendesJahr": Decimal,
+        "bruttoEinkommenLetztesJahr": Decimal,
+        "einkommenssteuerLetztesJahr": Decimal,
+        "abschreibungenLetztesJahr": Decimal,
+        "einkommenssteuerVor2Jahren": Decimal,
+        "bruttoEinkommenVor2Jahren": Decimal,
+        "abschreibungenVor2Jahren": Decimal,
+        "bruttoEinkommenVor3Jahren": Decimal,
+        "einkommenssteuerVor3Jahren": Decimal,
+        "abschreibungenVor3Jahren": Decimal
+    }
+
+#### Hausfrau
+
+    {
+        "sonstigesEinkommenMonatlich": Decimal
     }
 
 #### Rentner
@@ -329,12 +364,7 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
         "rentnerSeit": "YYYY-MM-DD",
         "rentenversicherung": {
             "name": String,
-            "anschrift": {
-                "strasse": String,
-                "hausnummer": String,
-                "plz": String,
-                "ort": String
-            }
+            "anschrift": Anschrift
         }
     }
 
@@ -343,7 +373,7 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
     {
         "name": String,
         "anschrift": Anschrift,
-        "branche": "BAUGEWERBE" | "DIENSTLEISTUNGEN" | "ENERGIE_WASSERVERSORGUNG_BERGBAU" | "ERZIEHUNG_UNTERRICHT" | "GEBIETSKOERPERSCHAFTEN" | "GEMEINNUETZIGE_ORGANISATION" | "GESUNDHEIT_SOZIALWESEN" | "HANDEL" | "HOTEL_GASTRONOMIE" | "INFORMATION_KOMMUNIKATION" | "KREDITINSTITUTE_VERSICHERUNGEN" | "KULTUR_SPORT_UNTERHALTUNG" | "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI" | "OEFFENTLICHER_DIENST" | "PRIVATE_HAUSHALTE" | "VERARBEITENDES_GEWERBE" | "VERKEHR_LOGISTIK"
+        "branche": "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI" | "ENERGIE_WASSERVERSORGUNG_BERGBAU" | "VERARBEITENDES_GEWERBE" | "BAUGEWERBE" | "HANDEL" | "VERKEHR_LOGISTIK" | "INFORMATION_KOMMUNIKATION" | "GEMEINNUETZIGE_ORGANISATION" | "KREDITINSTITUTE_VERSICHERUNGEN" | "PRIVATE_HAUSHALTE" | "DIENSTLEISTUNGEN" | "OEFFENTLICHER_DIENST" | "GEBIETSKOERPERSCHAFTEN" | "HOTEL_GASTRONOMIE" | "ERZIEHUNG_UNTERRICHT" | "KULTUR_SPORT_UNTERHALTUNG" | "GESUNDHEIT_SOZIALWESEN"
     }
 
 ### Anschrift
@@ -353,8 +383,16 @@ befüllt, werden sie ignoriert. Beispiel: *beschaeftigungsart=ARBEITER*, dann wi
         "hausnummer": String,
         "plz": String,
         "ort": String,
-        "land": "ALPHA-2 Isocode"
+        "land": Country
     }
+
+### Country
+
+Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
+
+Zusätzlich gibt es den Wert "SONSTIGE"
+
+    "AD" | "AE" | "AF" | "AG" | "AL" | "AM" | "AO" | "AR" | "AT" | "AU" | "AZ" | "BA" | "BB" | "BD" | "BE" | "BF" | "BG" | "BH" | "BI" | "BJ" | "BN" | "BO" | "BR" | "BS" | "BT" | "BW" | "BY" | "BZ" | "CA" | "CD" | "CF" | "CG" | "CH" | "CI" | "CK" | "CL" | "CM" | "CN" | "CO" | "CR" | "XK" | "CU" | "CV" | "CY" | "CZ" | "DE" | "DJ" | "DK" | "DM" | "DO" | "DZ" | "EC" | "EE" | "EG" | "ER" | "ES" | "ET" | "FI" | "FJ" | "FM" | "FR" | "GA" | "GB" | "GD" | "GE" | "GH" | "GM" | "GN" | "GQ" | "GR" | "GT" | "GW" | "GY" | "HN" | "HR" | "HT" | "HU" | "ID" | "IE" | "IL" | "IN" | "IQ" | "IR" | "IS" | "IT" | "JM" | "JO" | "JP" | "KE" | "KG" | "KH" | "KI" | "KM" | "KN" | "KP" | "KR" | "KW" | "KZ" | "LA" | "LB" | "LC" | "LI" | "LK" | "LR" | "LS" | "LT" | "LU" | "LV" | "LY" | "MA" | "MC" | "MD" | "ME" | "MG" | "MH" | "MK" | "ML" | "MM" | "MN" | "MR" | "MT" | "MU" | "MV" | "MW" | "MX" | "MY" | "MZ" | "NA" | "NE" | "NG" | "NI" | "NL" | "NO" | "NP" | "NR" | "NU" | "NZ" | "OM" | "PA" | "PE" | "PG" | "PH" | "PK" | "PL" | "PS" | "PT" | "PW" | "PY" | "QA" | "RO" | "RS" | "RU" | "RW" | "SA" | "SB" | "SC" | "SD" | "SE" | "SG" | "SI" | "SK" | "SL" | "SM" | "SN" | "SO" | "SR" | "SS" | "ST" | "SV" | "SY" | "SZ" | "TD" | "TG" | "TH" | "TJ" | "TL" | "TM" | "TN" | "TO" | "TR" | "TT" | "TV" | "TZ" | "UA" | "UG" | "US" | "UY" | "UZ" | "VA" | "VC" | "VE" | "VN" | "VU" | "WS" | "YE" | "ZA" | "ZM" | "ZW" | "SONSTIGE"
 
 ### Haushalt
 
