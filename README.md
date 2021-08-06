@@ -260,7 +260,7 @@ Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsa
             "inProbezeit": true | false
         },
         "vorherigesBeschaeftigungsverhaeltnis": {
-            "arbeitgeber": Firma
+            "arbeitgeber": Firma,
             "beschaeftigtSeit": "YYYY-MM-DD",
             "beschaeftigtBis": "YYYY-MM-DD"
         }
