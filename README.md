@@ -178,13 +178,13 @@ Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine
 ### Herkunft
 
     {
-        "arbeitserlaubnisVorhanden": true | false,
-        "aufenthaltBefristetBis": "YYYY-MM-DD",
-        "arbeitserlaubnisBefristetBis": "YYYY-MM-DD",
-        "inDeutschlandSeit": "YYYY-MM-DD",
         "staatsangehoerigkeit": "ALPHA-2 Isocode",
+        "steuerId": String,
+        "inDeutschlandSeit": "YYYY-MM-DD",
         "aufenthaltstitel": "VISUM" | "AUFENTHALTSERLAUBNIS" | "NIEDERLASSUNGSERLAUBNIS" | "ERLAUBNIS_ZUM_DAUERAUFENTHALT_EU",
-        "steuerId": String
+        "aufenthaltBefristetBis": "YYYY-MM-DD",
+        "arbeitserlaubnisVorhanden": true | false,
+        "arbeitserlaubnisBefristetBis": "YYYY-MM-DD"
     }
 
 ### Personendaten
@@ -227,7 +227,7 @@ Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine
         }
     }
 
-Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant.
+Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant. Die Angabe *voranschrift* ist nur relevant, sofern die *wohnhaftSeit* bei der Anschrift noch keine 3 Jahre zurück liegt.
 
 ### Beschaeftigung
 
@@ -244,7 +244,7 @@ Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant.
     }
 
 Die `Beschaeftigungsart` bestimmt die Beschäftigung und damit das dazu korrespondierende Feld. Beispielsweise wird für die `beschaeftigungsart=ARBEITER`
-die Daten unter dem Knoten `arbeiter` genutzt, bei der `beschaeftigungsart=BEAMTER` entsprechend der Knoten `beamter`. Werden darüber hinaus weitere Felder befüllt so werden diese ignoriert.<BR/>
+die Daten unter dem Knoten `arbeiter` genutzt, bei der `beschaeftigungsart=BEAMTER` entsprechend der Knoten `beamter`. Werden darüber hinaus weitere Felder befüllt so werden diese ignoriert.
 Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsart passende Knoten nicht befüllt, werden alle Felder ignoriert.
 
 #### Arbeiter
@@ -373,7 +373,7 @@ Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsa
     {
         "name": String,
         "anschrift": Anschrift,
-        "branche": "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI" | "ENERGIE_WASSERVERSORGUNG_BERGBAU" | "VERARBEITENDES_GEWERBE" | "BAUGEWERBE" | "HANDEL" | "VERKEHR_LOGISTIK" | "INFORMATION_KOMMUNIKATION" | "GEMEINNUETZIGE_ORGANISATION" | "KREDITINSTITUTE_VERSICHERUNGEN" | "PRIVATE_HAUSHALTE" | "DIENSTLEISTUNGEN" | "OEFFENTLICHER_DIENST" | "GEBIETSKOERPERSCHAFTEN" | "HOTEL_GASTRONOMIE" | "ERZIEHUNG_UNTERRICHT" | "KULTUR_SPORT_UNTERHALTUNG" | "GESUNDHEIT_SOZIALWESEN"
+        "branche": "BAUGEWERBE" | "DIENSTLEISTUNGEN" | "ENERGIE_WASSERVERSORGUNG_BERGBAU" | "ERZIEHUNG_UNTERRICHT" | "GEBIETSKOERPERSCHAFTEN" | "GEMEINNUETZIGE_ORGANISATION" | "GESUNDHEIT_SOZIALWESEN" | "HANDEL" | "HOTEL_GASTRONOMIE" | "INFORMATION_KOMMUNIKATION" | "KREDITINSTITUTE_VERSICHERUNGEN" | "KULTUR_SPORT_UNTERHALTUNG" | "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI" | "OEFFENTLICHER_DIENST" | "PRIVATE_HAUSHALTE" | "VERARBEITENDES_GEWERBE" | "VERKEHR_LOGISTIK"
     }
 
 ### Anschrift
