@@ -4,15 +4,15 @@ Die Schnittstelle ermöglicht das automatisierte Anlegen von Vorgängen in **Kre
 
 Unter https://github.com/europace/kex-vorgang-api-schema liegt das zugehörige JSON-Schema, das zur Codegenerierung genutzt werden kann.
 
-> ⚠️ Diese Schnittstelle wird kontinuierlich weiterentwickelt. Daher erwarten wir
-> von allen Nutzern dieser Schnittstelle, dass sie das "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)" nutzen, d.h.
-> tolerant gegenüber kompatiblen API-Änderungen beim Lesen und Prozessieren der Daten sind:
+> ⚠️ This API is continuously xdeveloped. Therefore we expect
+> all users to align with the "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)", which means to
+> tolerant towards compatibke API-Changes during reading and processing of the data. This means:
 >
-> 1. unbekannte Felder dürfen keine Fehler verursachen
+> 1. unknown properties must not result into errors
 >
-> 2. Strings mit eingeschränktem Wertebereich (Enums) müssen mit neuen, unbekannten Werten umgehen können
+> 2. Strings with a restricted Set of values(Enums) must upport new unknown values
 >
-> 3. sinnvoller Umgang mit HTTP-Statuscodes, die nicht explizit dokumentiert sind
+> 3. sensible usage of HTTP-Statuscodes, even if they are not explicitly documented
 >
 
 <!-- https://opensource.zalando.com/restful-api-guidelines/#108 -->
