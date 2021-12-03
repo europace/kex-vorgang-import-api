@@ -35,22 +35,14 @@ The data is sent in the request body as JSON.
 
 A successful call results in a response with the HTTP Statuscode **201 CREATED**.
 
-## Authentifizierung
+## Authentication
 
-Für jeden Request ist eine Authentifizierung erforderlich. Die Authentifizierung erfolgt über den OAuth 2.0 Client-Credentials Flow.
+This API is secured by the OAuth client credentials flow using the Authorization-API.
+To use this API your OAuth2-Client needs the following Scopes:
 
-| Request Header Name | Beschreibung           |
-|---------------------|------------------------|
-| Authorization       | OAuth 2.0 Bearer Token |
-
-Das Bearer Token kann über die [Authorization-API](https://docs.api.europace.de/privatkredit/authentifizierung/) angefordert werden. Dazu wird ein Client benötigt, der vorher von einer berechtigten
-Person über das Partnermanagement angelegt wurde. Eine Anleitung dafür befindet sich im [Help Center](https://europace2.zendesk.com/hc/de/articles/360012514780).
-
-Damit der Client für diese API genutzt werden kann, muss im Partnermanagement die Berechtigung **KreditSmart-Vorgänge anlegen/verändern** (Scope `privatkredit:vorgang:schreiben`) aktiviert sein.
-
-Schlägt die Authentifizierung fehl, erhält der Aufrufer eine HTTP Response mit Statuscode **401 UNAUTHORIZED**.
-
-Hat der Client keine Berechtigung die Resource abzurufen, erhält der Aufrufer eine HTTP Response mit Statuscode **403 FORBIDDEN**.
+| Scope                          | Label in Partnermanagement             | Description                               |
+|--------------------------------|----------------------------------------|-------------------------------------------|
+| privatkredit:vorgang:schreiben | KreditSmart-Vorgänge anlegen/verändern | Scope for creating and updating a Vorgang |
 
 ## TraceId zur Nachverfolgbarkeit von Requests
 
