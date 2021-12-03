@@ -1,8 +1,10 @@
 # KEX-Vorgang-Import-API
 
-Die Schnittstelle ermöglicht das automatisierte Anlegen von Vorgängen in **Kredit**Smart.
+> ⚠️ You'll find German domain-terms in the documentation, for translations and further explanations please refer to our [glossary](https://docs.api.europace.de/common/glossary/)
 
-Unter https://github.com/europace/kex-vorgang-api-schema liegt das zugehörige JSON-Schema, das zur Codegenerierung genutzt werden kann.
+This API enables the user to create new Vorgänge in **Kredit**Smart.
+
+The corresponding JSON-schema, which is useful for code-generation, can be found [here](https://github.com/europace/kex-vorgang-api-schema).
 
 > ⚠️ This API is continuously xdeveloped. Therefore we expect
 > all users to align with the "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)", which means to
@@ -17,21 +19,21 @@ Unter https://github.com/europace/kex-vorgang-api-schema liegt das zugehörige J
 
 <!-- https://opensource.zalando.com/restful-api-guidelines/#108 -->
 
-## Anlegen eines neuen Vorgangs
+## Creation of a new Vorgang
 
-Neue Vorgänge können per **HTTP POST** angelegt werden.
+New Vorgänge can be created via **HTTP POST**.
 
-Die URL für das Anlegen von Echtgeschäftsvorgängen ist:
+The URL for the creation of Echtgeschäftsvorgängen is:
 
     https://kex-vorgang-import.ratenkredit.api.europace.de/vorgang?environment=PRODUCTION
 
-Die URL für das Anlegen von Testvorgängen ist:
+The URL for the creation of Testvorgängen is:
 
     https://kex-vorgang-import.ratenkredit.api.europace.de/vorgang
 
-Die Daten werden als JSON Dokument im Body des POST Requests übermittelt.
+The data is sent in the request body as JSON.
 
-Ein erfolgreicher Aufruf resultiert in einer Response mit dem HTTP Statuscode **201 CREATED**.
+A successful call results in a response with the HTTP Statuscode **201 CREATED**.
 
 ## Authentifizierung
 
