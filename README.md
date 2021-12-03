@@ -46,15 +46,15 @@ To use this API your OAuth2-Client needs the following Scopes:
 
 ## Content-Type
 
-Die Schnittstelle akzeptiert Daten mit Content-Type "**application/json**".
+This API accepts data with the Content-Type "**application/json**".
 
-Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich das Encoding, wenn es nicht UTF-8 ist.
+Therefore the Content-Type Header must be set appropriately in the request. In addition the encoding needs to be specified if it is not UTF-8.
 
 | Request Header Name | Header Value           |
 |---------------------|------------------------|
 | Content-Type        | application/json       |
 
-## Beispiel
+## Example
 
 ### POST Request
 
@@ -84,35 +84,33 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
         }
     }
 
-## Fehlercodes
+## Error Codes
 
-Wenn der Request nicht erfolgreich verarbeitet werden konnte, liefert die Schnittstelle einen Fehlercode, auf den die aufrufende Anwendung reagieren kann, zurück.
+If a request cannot be proccessed successfully the API is returning an error code which the client can react to.
 
-Achtung: Im Fehlerfall wird kein Vorgang in **Kredit**Smart importiert und angelegt.
+Attention: In case of an error no data is importet into **Kredit**Smart.
 
-| Fehlercode | Nachricht            | Erklärung                                                  |
-|------------|----------------------|------------------------------------------------------------|
-| 401        | Unauthorized         | Authentifizierung ist fehlgeschlagen                       |
-| 422        | Unprocessable Entity | Es wurde keine gültige Kundenbetreuer-Partner-ID angegeben |
+| Fehlercode | Nachricht            | Erklärung                                    |
+|------------|----------------------|----------------------------------------------|
+| 401        | Unauthorized         | Authentication failed                        |
+| 422        | Unprocessable Entity | A valid Kundenbetreuer-Partner-ID is missing |
 
-Weitere Fehlercodes und ihre Bedeutung siehe Wikipedia: [HTTP-Statuscode](https://de.wikipedia.org/wiki/HTTP-Statuscode)
+Further error codes and their meaning can be found on Wikipedia: [HTTP-Statuscode](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 ## Request Format
 
-Die Angaben werden als JSON im Body des Requests gesendet.
+The data needs to be sent in JSON inside the request body.
 
-Für eine bessere Lesbarkeit wird das Gesamtformat in *Typen* aufgebrochen, die an anderer Stelle definiert sind, aber an verwendeter Stelle eingesetzt werden müssen. Die Attribute innerhalb eines
-Blocks können in beliebiger Reihenfolge angegeben werden.
+For better readability the Format is broken down into *types* which are defined separately but then have to be put into the marked positions. The attributes inside a block can be sent in any order..
 
-Für einen erfolgreichen Request gibt es derzeit nur ein definiertes Pflichtfeld (siehe „Vorgang“).
+Currently we just have one mandatory field in our dataset (see [Vorgang](#vorgang).
 
-Alle übermittelten Daten werden in **Kredit**Smart übernommen, mit Ausnahme von:
+In general all data is imported into a new Vorgang in **Kredit**Smart, exept:
 
-* Angaben, die aufgrund eines abweichenden Formats nicht verstanden werden (z. B. "1" statt "true", "01.01.2016" statt "2016-01-01"), und
-* Angaben, die aufgrund der Datenkonstellationen überflüssig bzw. unstimmig sind (z. B. Angabe beim 1. Antragsteller zu gemeinsamerHaushalt).
+* values, which are not processable due to the wrong format (e.g. "1" instead of "true", "01.01.2016" instead of "2016-01-01")
+* values, which are unneccessary or contrary(e.g. a value inside the 1. Antragsteller for `gemeinsamerHaushalt`)
 
-An verschiedenen Stellen im Request ist die Angabe eines Landes oder der Staatsangehörigkeit notwendig:
-Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
+At different positions inside the data you need to specify a country or a citizenship. These values are using the format as described in [ISO-3166/ALPHA-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
 ## Vorgang
 
@@ -131,7 +129,7 @@ Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/
         "kommentare": [ String ]
     }
 
-Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
+Das property *kundenbetreuer.partnerId* is mandatory.
 
 ### Partner
 
@@ -139,7 +137,7 @@ Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
         "partnerId": String
     }
 
-Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
+The Europace 2 PartnerID has 5-characters und hat das Format ABC12.
 
 ### Benachrichtigung
 
@@ -147,7 +145,7 @@ Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
        "aktiv": true | false
     }
 
-Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine E-Mail als Bestätigung.
+If the Benachrichtigung is set to `aktiv`, the Kundenbetreuer receibes a confirmation email.
 
 ### Antragsteller
 
@@ -210,7 +208,7 @@ Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine
         }
     }
 
-Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant. Die Angabe *voranschrift* ist nur relevant, sofern die *wohnhaftSeit* bei der Anschrift noch keine 3 Jahre zurück liegt.
+The value of `gemeinsamerHaushalt` is relevant for the second Antragsteller only. Die value of `voranschrift` is only relevant if `wohnhaftSeit` is more recent than 3 years ago.
 
 ### Beschaeftigung
 
@@ -226,9 +224,8 @@ Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant. Di
         "rentner": Rentner
     }
 
-Die `Beschaeftigungsart` bestimmt die Beschäftigung und damit das dazu korrespondierende Feld. Beispielsweise wird für die `beschaeftigungsart=ARBEITER`
-die Daten unter dem Knoten `arbeiter` genutzt, bei der `beschaeftigungsart=BEAMTER` entsprechend der Knoten `beamter`. Werden darüber hinaus weitere Felder befüllt so werden diese ignoriert.
-Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsart passende Knoten nicht befüllt, werden alle Felder ignoriert.
+The `Beschaeftigungsart` determines which data is been used. For example the `beschaeftigungsart=ARBEITER` means that all data underneath `arbeiter` is used, for `beschaeftigungsart=BEAMTER` the data underneath `beamter`. All other fields will be ignored.
+If there is no value for `Beschaeftigungsart` or the corresponding data to a `Beschaeftigungsart` is empty, all data is ignored.
 
 #### Arbeiter
 
@@ -371,9 +368,9 @@ Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsa
 
 ### Country
 
-Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
+This Type uses the format [ISO-3166/ALPHA-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
-Zusätzlich gibt es den Wert "SONSTIGE"
+In addition there is the value "SONSTIGE" ("other")
 
     "AD" | "AE" | "AF" | "AG" | "AL" | "AM" | "AO" | "AR" | "AT" | "AU" | "AZ" | "BA" | "BB" | "BD" | "BE" | "BF" | "BG" | "BH" | "BI" | "BJ" | "BN" | "BO" | "BR" | "BS" | "BT" | "BW" | "BY" | "BZ" | "CA" | "CD" | "CF" | "CG" | "CH" | "CI" | "CK" | "CL" | "CM" | "CN" | "CO" | "CR" | "XK" | "CU" | "CV" | "CY" | "CZ" | "DE" | "DJ" | "DK" | "DM" | "DO" | "DZ" | "EC" | "EE" | "EG" | "ER" | "ES" | "ET" | "FI" | "FJ" | "FM" | "FR" | "GA" | "GB" | "GD" | "GE" | "GH" | "GM" | "GN" | "GQ" | "GR" | "GT" | "GW" | "GY" | "HN" | "HR" | "HT" | "HU" | "ID" | "IE" | "IL" | "IN" | "IQ" | "IR" | "IS" | "IT" | "JM" | "JO" | "JP" | "KE" | "KG" | "KH" | "KI" | "KM" | "KN" | "KP" | "KR" | "KW" | "KZ" | "LA" | "LB" | "LC" | "LI" | "LK" | "LR" | "LS" | "LT" | "LU" | "LV" | "LY" | "MA" | "MC" | "MD" | "ME" | "MG" | "MH" | "MK" | "ML" | "MM" | "MN" | "MR" | "MT" | "MU" | "MV" | "MW" | "MX" | "MY" | "MZ" | "NA" | "NE" | "NG" | "NI" | "NL" | "NO" | "NP" | "NR" | "NU" | "NZ" | "OM" | "PA" | "PE" | "PG" | "PH" | "PK" | "PL" | "PS" | "PT" | "PW" | "PY" | "QA" | "RO" | "RS" | "RU" | "RW" | "SA" | "SB" | "SC" | "SD" | "SE" | "SG" | "SI" | "SK" | "SL" | "SM" | "SN" | "SO" | "SR" | "SS" | "ST" | "SV" | "SY" | "SZ" | "TD" | "TG" | "TH" | "TJ" | "TL" | "TM" | "TN" | "TO" | "TR" | "TT" | "TV" | "TZ" | "UA" | "UG" | "US" | "UY" | "UZ" | "VA" | "VC" | "VE" | "VN" | "VU" | "WS" | "YE" | "ZA" | "ZM" | "ZW" | "SONSTIGE"
 
@@ -618,11 +615,11 @@ Zusätzlich gibt es den Wert "SONSTIGE"
         "anbieter": "HAENDLER" | "PRIVAT"
     }
 
-Fahrzeugkauf wird nur ausgewertet, wenn als Finanzierungszweck "FAHRZEUGKAUF" gesetzt ist.
+`Fahrzeugkauf` is just processed if the `Finanzierungszweck` is set to "FAHRZEUGKAUF".
 
 ## Response Format
 
-Die Angaben werden als JSON im Body der Response gesendet.
+The data are sent as JSON in the response body.
 
     {
         "vorgangsnummer": String,
@@ -635,10 +632,9 @@ Die Angaben werden als JSON im Body der Response gesendet.
         }
     }
 
-In *messages* werden nicht übernommene Angaben und andere Hinweise gesendet.
+In `messages` you can find hints adaptions we made, for example values we could not process.
 
-Das Feld `antragsteller2` gibt es nur, wenn ein Vorgang mit zwei Antragstellern angelegt wurde.
+The property `antragsteller2` is only returned if the Vorgang has 2 Antragsteller.
 
-## Nutzungsbedingungen
-
-Die APIs werden unter folgenden [Nutzungsbedingungen](https://docs.api.europace.de/nutzungsbedingungen/) zur Verfügung gestellt.
+## Terms of use
+The APIs are made available under the following [Terms of Use](https://docs.api.europace.de/terms/).
