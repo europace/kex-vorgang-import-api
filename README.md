@@ -44,17 +44,6 @@ To use this API your OAuth2-Client needs the following Scopes:
 |--------------------------------|----------------------------------------|-------------------------------------------|
 | privatkredit:vorgang:schreiben | KreditSmart-Vorgänge anlegen/verändern | Scope for creating and updating a Vorgang |
 
-## TraceId zur Nachverfolgbarkeit von Requests
-
-Für jeden Request soll eine eindeutige ID generiert werden, die den Request im EUROPACE 2 System nachverfolgbar macht und so bei etwaigen Problemen oder Fehlern die systemübergreifende Analyse
-erleichtert.
-
-Die Übermittlung der X-TraceId erfolgt über einen HTTP Header. Dieser Header ist optional, wenn er nicht gesetzt ist, wird eine ID vom System generiert.
-
-| Request Header Name | Beschreibung                    | Beispiel    |
-|---------------------|---------------------------------|-------------|
-| X-TraceId           | eindeutige Id für jeden Request | sys12345678 |
-
 ## Content-Type
 
 Die Schnittstelle akzeptiert Daten mit Content-Type "**application/json**".
