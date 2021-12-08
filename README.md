@@ -1,18 +1,18 @@
 # KEX-Vorgang-Import-API
 
-> ⚠️ You'll find German domain-terms in the documentation, for translations and further explanations please refer to our [glossary](https://docs.api.europace.de/common/glossary/)
+> ⚠️ You'll find German domain-specific terms in the documentation, for translations and further explanations please refer to our [glossary](https://docs.api.europace.de/common/glossary/)
 
 This API enables the user to create new Vorgänge in **Kredit**Smart.
 
 The corresponding JSON-schema, which is useful for code-generation, can be found [here](https://github.com/europace/kex-vorgang-api-schema).
 
-> ⚠️ This API is continuously xdeveloped. Therefore we expect
-> all users to align with the "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)", which means to
-> tolerant towards compatibke API-Changes during reading and processing of the data. This means:
+> ⚠️ This API is continuously developed. Therefore we expect
+> all users to align with the "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)", which requires clients to be
+> tolerant towards compatible API-Changes when reading and processing of the data. This means:
 >
-> 1. unknown properties must not result into errors
+> 1. unknown properties must not result in errors
 >
-> 2. Strings with a restricted Set of values(Enums) must upport new unknown values
+> 2. Strings with a restricted set of values (Enums) must support new unknown values
 >
 > 3. sensible usage of HTTP-Statuscodes, even if they are not explicitly documented
 >
@@ -37,7 +37,7 @@ A successful call results in a response with the HTTP Statuscode **201 CREATED**
 
 ## Authentication
 
-This API is secured by the OAuth client credentials flow using the Authorization-API.
+This API is secured by the OAuth client credentials flow using the [Authorization-API](https://docs.api.europace.de/privatkredit/authentifizierung/).
 To use this API your OAuth2-Client needs the following Scopes:
 
 | Scope                          | Label in Partnermanagement             | Description                               |
@@ -88,9 +88,9 @@ Therefore the Content-Type Header must be set appropriately in the request. In a
 
 If a request cannot be proccessed successfully the API is returning an error code which the client can react to.
 
-Attention: In case of an error no data is importet into **Kredit**Smart.
+Attention: In case of an error no data is imported into **Kredit**Smart.
 
-| Fehlercode | Nachricht            | Erklärung                                    |
+| Error code | Message            | Description                                   |
 |------------|----------------------|----------------------------------------------|
 | 401        | Unauthorized         | Authentication failed                        |
 | 422        | Unprocessable Entity | A valid Kundenbetreuer-Partner-ID is missing |
@@ -99,16 +99,16 @@ Further error codes and their meaning can be found on Wikipedia: [HTTP-Statuscod
 
 ## Request Format
 
-The data needs to be sent in JSON inside the request body.
+The data needs to be sent as JSON inside the request body.
 
-For better readability the Format is broken down into *types* which are defined separately but then have to be put into the marked positions. The attributes inside a block can be sent in any order..
+For better readability, the overall format is broken down into *types* that are defined separately but should be used at the corresponding positions. The attributes within a block can be specified in any order.
 
-Currently we just have one mandatory field in our dataset (see [Vorgang](#vorgang).
+Currently we have only one mandatory field in our dataset (see [Vorgang](#vorgang).
 
-In general all data is imported into a new Vorgang in **Kredit**Smart, exept:
+In general, all data is imported as a new Vorgang in **Kredit**Smart, except:
 
-* values, which are not processable due to the wrong format (e.g. "1" instead of "true", "01.01.2016" instead of "2016-01-01")
-* values, which are unneccessary or contrary(e.g. a value inside the 1. Antragsteller for `gemeinsamerHaushalt`)
+* values, which are not processable due to a wrong format (e.g. "1" instead of "true", "01.01.2016" instead of "2016-01-01")
+* values, which are unneccessary or inconsistent due to the data constellation (e.g. a value inside the 1. Antragsteller for `gemeinsamerHaushalt`)
 
 At different positions inside the data you need to specify a country or a citizenship. These values are using the format as described in [ISO-3166/ALPHA-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
@@ -129,7 +129,7 @@ At different positions inside the data you need to specify a country or a citize
         "kommentare": [ String ]
     }
 
-Das property *kundenbetreuer.partnerId* is mandatory.
+The property *kundenbetreuer.partnerId* is mandatory.
 
 ### Partner
 
@@ -137,7 +137,7 @@ Das property *kundenbetreuer.partnerId* is mandatory.
         "partnerId": String
     }
 
-The Europace 2 PartnerID has 5-characters und hat das Format ABC12.
+The Europace 2 PartnerID has 5-characters and has the format ABC12.
 
 ### Benachrichtigung
 
@@ -145,7 +145,7 @@ The Europace 2 PartnerID has 5-characters und hat das Format ABC12.
        "aktiv": true | false
     }
 
-If the Benachrichtigung is set to `aktiv`, the Kundenbetreuer receibes a confirmation email.
+If the Benachrichtigung is set to `aktiv`, the Kundenbetreuer receives a confirmation email.
 
 ### Antragsteller
 
@@ -208,7 +208,7 @@ If the Benachrichtigung is set to `aktiv`, the Kundenbetreuer receibes a confirm
         }
     }
 
-The value of `gemeinsamerHaushalt` is relevant for the second Antragsteller only. Die value of `voranschrift` is only relevant if `wohnhaftSeit` is more recent than 3 years ago.
+The value of `gemeinsamerHaushalt` is relevant for the second Antragsteller only. The value of `voranschrift` is only relevant if `wohnhaftSeit` is more recent than 3 years ago.
 
 ### Beschaeftigung
 
@@ -224,8 +224,8 @@ The value of `gemeinsamerHaushalt` is relevant for the second Antragsteller only
         "rentner": Rentner
     }
 
-The `Beschaeftigungsart` determines which data is been used. For example the `beschaeftigungsart=ARBEITER` means that all data underneath `arbeiter` is used, for `beschaeftigungsart=BEAMTER` the data underneath `beamter`. All other fields will be ignored.
-If there is no value for `Beschaeftigungsart` or the corresponding data to a `Beschaeftigungsart` is empty, all data is ignored.
+The `Beschaeftigungsart` determines which data is used. For example the `beschaeftigungsart=ARBEITER` means that all data of field `arbeiter` is used, for `beschaeftigungsart=BEAMTER` the data of field `beamter` is used. All other fields will be ignored.
+If there is no value for `Beschaeftigungsart` or the corresponding field to a `Beschaeftigungsart` is empty, all data is ignored.
 
 #### Arbeiter
 
@@ -619,7 +619,7 @@ In addition there is the value "SONSTIGE" ("other")
 
 ## Response Format
 
-The data are sent as JSON in the response body.
+The data is sent as JSON in the response body.
 
     {
         "vorgangsnummer": String,
@@ -632,7 +632,7 @@ The data are sent as JSON in the response body.
         }
     }
 
-In `messages` you can find hints adaptions we made, for example values we could not process.
+In `messages` you can find hints and/or adaptions we made, for example about values we could not process.
 
 The property `antragsteller2` is only returned if the Vorgang has 2 Antragsteller.
 
