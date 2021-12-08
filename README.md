@@ -90,10 +90,11 @@ If a request cannot be proccessed successfully the API is returning an error cod
 
 Attention: In case of an error no data is imported into **Kredit**Smart.
 
-| Error code | Message            | Description                                   |
-|------------|----------------------|----------------------------------------------|
-| 401        | Unauthorized         | Authentication failed                        |
-| 422        | Unprocessable Entity | A valid Kundenbetreuer-Partner-ID is missing |
+| Error code | Message              | Description                                        |
+|------------|----------------------|----------------------------------------------------|
+| 401        | Unauthorized         | Authentication failed                              |
+| 403        | Forbidden            | the client does not have the necessary permissions |
+| 422        | Unprocessable Entity | A valid Kundenbetreuer-Partner-ID is missing       |
 
 Further error codes and their meaning can be found on Wikipedia: [HTTP-Statuscode](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
