@@ -8,7 +8,7 @@ The corresponding JSON-schema, which is useful for code-generation, can be found
 
 > ⚠️ This API is continuously developed. Therefore we expect
 > all users to align with the "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)", which requires clients to be
-> tolerant towards compatible API-Changes when reading and processing of the data. This means:
+> tolerant towards compatible API-Changes when reading and processing the data. This means:
 >
 > 1. unknown properties must not result in errors
 >
@@ -48,7 +48,7 @@ To use this API your OAuth2-Client needs the following Scopes:
 
 This API accepts data with the Content-Type "**application/json**".
 
-Therefore the Content-Type Header must be set appropriately in the request. In addition the encoding needs to be specified if it is not UTF-8.
+Therefore the Content-Type header must be set appropriately in the request. In addition the encoding needs to be specified if it is not UTF-8.
 
 | Request Header Name | Header Value           |
 |---------------------|------------------------|
