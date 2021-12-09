@@ -1,77 +1,60 @@
 # KEX-Vorgang-Import-API
 
-Die Schnittstelle ermöglicht das automatisierte Anlegen von Vorgängen in **Kredit**Smart.
+> ⚠️ You'll find German domain-specific terms in the documentation, for translations and further explanations please refer to our [glossary](https://docs.api.europace.de/common/glossary/)
 
-Unter https://github.com/europace/kex-vorgang-api-schema liegt das zugehörige JSON-Schema, das zur Codegenerierung genutzt werden kann.
+This API enables the user to create new Vorgänge in **Kredit**Smart.
 
-> ⚠️ Diese Schnittstelle wird kontinuierlich weiterentwickelt. Daher erwarten wir
-> von allen Nutzern dieser Schnittstelle, dass sie das "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)" nutzen, d.h.
-> tolerant gegenüber kompatiblen API-Änderungen beim Lesen und Prozessieren der Daten sind:
+The corresponding JSON-schema, which is useful for code-generation, can be found [here](https://github.com/europace/kex-vorgang-api-schema).
+
+> ⚠️ This API is continuously developed. Therefore we expect
+> all users to align with the "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)", which requires clients to be
+> tolerant towards compatible API-Changes when reading and processing the data. This means:
 >
-> 1. unbekannte Felder dürfen keine Fehler verursachen
+> 1. unknown properties must not result in errors
 >
-> 2. Strings mit eingeschränktem Wertebereich (Enums) müssen mit neuen, unbekannten Werten umgehen können
+> 2. Strings with a restricted set of values (Enums) must support new unknown values
 >
-> 3. sinnvoller Umgang mit HTTP-Statuscodes, die nicht explizit dokumentiert sind
+> 3. sensible usage of HTTP-Statuscodes, even if they are not explicitly documented
 >
 
 <!-- https://opensource.zalando.com/restful-api-guidelines/#108 -->
 
-## Anlegen eines neuen Vorgangs
+## Creation of a new Vorgang
 
-Neue Vorgänge können per **HTTP POST** angelegt werden.
+New Vorgänge can be created via **HTTP POST**.
 
-Die URL für das Anlegen von Echtgeschäftsvorgängen ist:
+The URL for the creation of Echtgeschäftsvorgängen is:
 
     https://kex-vorgang-import.ratenkredit.api.europace.de/vorgang?environment=PRODUCTION
 
-Die URL für das Anlegen von Testvorgängen ist:
+The URL for the creation of Testvorgängen is:
 
     https://kex-vorgang-import.ratenkredit.api.europace.de/vorgang
 
-Die Daten werden als JSON Dokument im Body des POST Requests übermittelt.
+The data is sent in the request body as JSON.
 
-Ein erfolgreicher Aufruf resultiert in einer Response mit dem HTTP Statuscode **201 CREATED**.
+A successful call results in a response with the HTTP Statuscode **201 CREATED**.
 
-## Authentifizierung
+## Authentication
 
-Für jeden Request ist eine Authentifizierung erforderlich. Die Authentifizierung erfolgt über den OAuth 2.0 Client-Credentials Flow.
+This API is secured by the OAuth client credentials flow using the [Authorization-API](https://docs.api.europace.de/privatkredit/authentifizierung/).
+To use this API your OAuth2-Client needs the following Scopes:
 
-| Request Header Name | Beschreibung           |
-|---------------------|------------------------|
-| Authorization       | OAuth 2.0 Bearer Token |
-
-Das Bearer Token kann über die [Authorization-API](https://docs.api.europace.de/privatkredit/authentifizierung/) angefordert werden. Dazu wird ein Client benötigt, der vorher von einer berechtigten
-Person über das Partnermanagement angelegt wurde. Eine Anleitung dafür befindet sich im [Help Center](https://europace2.zendesk.com/hc/de/articles/360012514780).
-
-Damit der Client für diese API genutzt werden kann, muss im Partnermanagement die Berechtigung **KreditSmart-Vorgänge anlegen/verändern** (Scope `privatkredit:vorgang:schreiben`) aktiviert sein.
-
-Schlägt die Authentifizierung fehl, erhält der Aufrufer eine HTTP Response mit Statuscode **401 UNAUTHORIZED**.
-
-Hat der Client keine Berechtigung die Resource abzurufen, erhält der Aufrufer eine HTTP Response mit Statuscode **403 FORBIDDEN**.
-
-## TraceId zur Nachverfolgbarkeit von Requests
-
-Für jeden Request soll eine eindeutige ID generiert werden, die den Request im EUROPACE 2 System nachverfolgbar macht und so bei etwaigen Problemen oder Fehlern die systemübergreifende Analyse
-erleichtert.
-
-Die Übermittlung der X-TraceId erfolgt über einen HTTP Header. Dieser Header ist optional, wenn er nicht gesetzt ist, wird eine ID vom System generiert.
-
-| Request Header Name | Beschreibung                    | Beispiel    |
-|---------------------|---------------------------------|-------------|
-| X-TraceId           | eindeutige Id für jeden Request | sys12345678 |
+| Scope                          | Label in Partnermanagement             | Description                               |
+|--------------------------------|----------------------------------------|-------------------------------------------|
+| privatkredit:vorgang:schreiben | KreditSmart-Vorgänge anlegen/verändern | Scope for creating and updating a Vorgang |
 
 ## Content-Type
 
-Die Schnittstelle akzeptiert Daten mit Content-Type "**application/json**".
+This API accepts data with the Content-Type "**application/json**".
 
-Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich das Encoding, wenn es nicht UTF-8 ist.
+Therefore the Content-Type header must be set appropriately in the request. In addition the encoding needs to be specified if it is not UTF-8.
 
 | Request Header Name | Header Value           |
 |---------------------|------------------------|
 | Content-Type        | application/json       |
 
-## Beispiel
+## Example
 
 ### POST Request
 
@@ -101,35 +84,34 @@ Entsprechend muss im Request der Content-Type Header gesetzt werden. Zusätzlich
         }
     }
 
-## Fehlercodes
+## Error Codes
 
-Wenn der Request nicht erfolgreich verarbeitet werden konnte, liefert die Schnittstelle einen Fehlercode, auf den die aufrufende Anwendung reagieren kann, zurück.
+If a request cannot be proccessed successfully the API is returning an error code which the client can react to.
 
-Achtung: Im Fehlerfall wird kein Vorgang in **Kredit**Smart importiert und angelegt.
+Attention: In case of an error no data is imported into **Kredit**Smart.
 
-| Fehlercode | Nachricht            | Erklärung                                                  |
-|------------|----------------------|------------------------------------------------------------|
-| 401        | Unauthorized         | Authentifizierung ist fehlgeschlagen                       |
-| 422        | Unprocessable Entity | Es wurde keine gültige Kundenbetreuer-Partner-ID angegeben |
+| Error code | Message              | Description                                        |
+|------------|----------------------|----------------------------------------------------|
+| 401        | Unauthorized         | Authentication failed                              |
+| 403        | Forbidden            | the client does not have the necessary permissions |
+| 422        | Unprocessable Entity | A valid Kundenbetreuer-Partner-ID is missing       |
 
-Weitere Fehlercodes und ihre Bedeutung siehe Wikipedia: [HTTP-Statuscode](https://de.wikipedia.org/wiki/HTTP-Statuscode)
+Further error codes and their meaning can be found on Wikipedia: [HTTP-Statuscode](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 ## Request Format
 
-Die Angaben werden als JSON im Body des Requests gesendet.
+The data needs to be sent as JSON inside the request body.
 
-Für eine bessere Lesbarkeit wird das Gesamtformat in *Typen* aufgebrochen, die an anderer Stelle definiert sind, aber an verwendeter Stelle eingesetzt werden müssen. Die Attribute innerhalb eines
-Blocks können in beliebiger Reihenfolge angegeben werden.
+For better readability, the overall format is broken down into *types* that are defined separately but should be used at the corresponding positions. The attributes within a block can be specified in any order.
 
-Für einen erfolgreichen Request gibt es derzeit nur ein definiertes Pflichtfeld (siehe „Vorgang“).
+Currently we have only one mandatory field in our dataset (see [Vorgang](#vorgang).
 
-Alle übermittelten Daten werden in **Kredit**Smart übernommen, mit Ausnahme von:
+In general, all data is imported as a new Vorgang in **Kredit**Smart, except:
 
-* Angaben, die aufgrund eines abweichenden Formats nicht verstanden werden (z. B. "1" statt "true", "01.01.2016" statt "2016-01-01"), und
-* Angaben, die aufgrund der Datenkonstellationen überflüssig bzw. unstimmig sind (z. B. Angabe beim 1. Antragsteller zu gemeinsamerHaushalt).
+* values, which are not processable due to a wrong format (e.g. "1" instead of "true", "01.01.2016" instead of "2016-01-01")
+* values, which are unneccessary or inconsistent due to the data constellation (e.g. a value inside the 1. Antragsteller for `gemeinsamerHaushalt`)
 
-An verschiedenen Stellen im Request ist die Angabe eines Landes oder der Staatsangehörigkeit notwendig:
-Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
+At different positions inside the data you need to specify a country or a citizenship. These values are using the format as described in [ISO-3166/ALPHA-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
 ## Vorgang
 
@@ -148,7 +130,7 @@ Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/
         "kommentare": [ String ]
     }
 
-Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
+The property *kundenbetreuer.partnerId* is mandatory.
 
 ### Partner
 
@@ -156,7 +138,7 @@ Das Feld *kundenbetreuer.partnerId* ist ein Pflichtfeld.
         "partnerId": String
     }
 
-Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
+The Europace 2 PartnerID has 5-characters and has the format ABC12.
 
 ### Benachrichtigung
 
@@ -164,7 +146,7 @@ Die Europace 2 PartnerID ist 5-stellig und hat das Format ABC12.
        "aktiv": true | false
     }
 
-Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine E-Mail als Bestätigung.
+If the Benachrichtigung is set to `aktiv`, the Kundenbetreuer receives a confirmation email.
 
 ### Antragsteller
 
@@ -227,7 +209,7 @@ Wenn die Benachrichtigung auf aktiv gesetzt ist, bekommt der Kundenbetreuer eine
         }
     }
 
-Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant. Die Angabe *voranschrift* ist nur relevant, sofern die *wohnhaftSeit* bei der Anschrift noch keine 3 Jahre zurück liegt.
+The value of `gemeinsamerHaushalt` is relevant for the second Antragsteller only. The value of `voranschrift` is only relevant if `wohnhaftSeit` is more recent than 3 years ago.
 
 ### Beschaeftigung
 
@@ -243,9 +225,8 @@ Die Angabe *gemeinsamerHaushalt* ist nur beim zweiten Antragsteller relevant. Di
         "rentner": Rentner
     }
 
-Die `Beschaeftigungsart` bestimmt die Beschäftigung und damit das dazu korrespondierende Feld. Beispielsweise wird für die `beschaeftigungsart=ARBEITER`
-die Daten unter dem Knoten `arbeiter` genutzt, bei der `beschaeftigungsart=BEAMTER` entsprechend der Knoten `beamter`. Werden darüber hinaus weitere Felder befüllt so werden diese ignoriert.
-Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsart passende Knoten nicht befüllt, werden alle Felder ignoriert.
+The `Beschaeftigungsart` determines which data is used. For example the `beschaeftigungsart=ARBEITER` means that all data of field `arbeiter` is used, for `beschaeftigungsart=BEAMTER` the data of field `beamter` is used. All other fields will be ignored.
+If there is no value for `Beschaeftigungsart` or the corresponding field to a `Beschaeftigungsart` is empty, all data is ignored.
 
 #### Arbeiter
 
@@ -388,9 +369,9 @@ Ist keine `Beschaeftigungsart` gesetzt oder der zur angegebenen Beschäftigungsa
 
 ### Country
 
-Die Übermittlung erfolgt im Format [ISO-3166/ALPHA-2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
+This Type uses the format [ISO-3166/ALPHA-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
-Zusätzlich gibt es den Wert "SONSTIGE"
+In addition there is the value "SONSTIGE" ("other")
 
     "AD" | "AE" | "AF" | "AG" | "AL" | "AM" | "AO" | "AR" | "AT" | "AU" | "AZ" | "BA" | "BB" | "BD" | "BE" | "BF" | "BG" | "BH" | "BI" | "BJ" | "BN" | "BO" | "BR" | "BS" | "BT" | "BW" | "BY" | "BZ" | "CA" | "CD" | "CF" | "CG" | "CH" | "CI" | "CK" | "CL" | "CM" | "CN" | "CO" | "CR" | "XK" | "CU" | "CV" | "CY" | "CZ" | "DE" | "DJ" | "DK" | "DM" | "DO" | "DZ" | "EC" | "EE" | "EG" | "ER" | "ES" | "ET" | "FI" | "FJ" | "FM" | "FR" | "GA" | "GB" | "GD" | "GE" | "GH" | "GM" | "GN" | "GQ" | "GR" | "GT" | "GW" | "GY" | "HN" | "HR" | "HT" | "HU" | "ID" | "IE" | "IL" | "IN" | "IQ" | "IR" | "IS" | "IT" | "JM" | "JO" | "JP" | "KE" | "KG" | "KH" | "KI" | "KM" | "KN" | "KP" | "KR" | "KW" | "KZ" | "LA" | "LB" | "LC" | "LI" | "LK" | "LR" | "LS" | "LT" | "LU" | "LV" | "LY" | "MA" | "MC" | "MD" | "ME" | "MG" | "MH" | "MK" | "ML" | "MM" | "MN" | "MR" | "MT" | "MU" | "MV" | "MW" | "MX" | "MY" | "MZ" | "NA" | "NE" | "NG" | "NI" | "NL" | "NO" | "NP" | "NR" | "NU" | "NZ" | "OM" | "PA" | "PE" | "PG" | "PH" | "PK" | "PL" | "PS" | "PT" | "PW" | "PY" | "QA" | "RO" | "RS" | "RU" | "RW" | "SA" | "SB" | "SC" | "SD" | "SE" | "SG" | "SI" | "SK" | "SL" | "SM" | "SN" | "SO" | "SR" | "SS" | "ST" | "SV" | "SY" | "SZ" | "TD" | "TG" | "TH" | "TJ" | "TL" | "TM" | "TN" | "TO" | "TR" | "TT" | "TV" | "TZ" | "UA" | "UG" | "US" | "UY" | "UZ" | "VA" | "VC" | "VE" | "VN" | "VU" | "WS" | "YE" | "ZA" | "ZM" | "ZW" | "SONSTIGE"
 
@@ -635,11 +616,11 @@ Zusätzlich gibt es den Wert "SONSTIGE"
         "anbieter": "HAENDLER" | "PRIVAT"
     }
 
-Fahrzeugkauf wird nur ausgewertet, wenn als Finanzierungszweck "FAHRZEUGKAUF" gesetzt ist.
+`Fahrzeugkauf` is just processed if the `Finanzierungszweck` is set to "FAHRZEUGKAUF".
 
 ## Response Format
 
-Die Angaben werden als JSON im Body der Response gesendet.
+The data is sent as JSON in the response body.
 
     {
         "vorgangsnummer": String,
@@ -652,10 +633,9 @@ Die Angaben werden als JSON im Body der Response gesendet.
         }
     }
 
-In *messages* werden nicht übernommene Angaben und andere Hinweise gesendet.
+In `messages` you can find hints and/or adaptions we made, for example about values we could not process.
 
-Das Feld `antragsteller2` gibt es nur, wenn ein Vorgang mit zwei Antragstellern angelegt wurde.
+The property `antragsteller2` is only returned if the Vorgang has 2 Antragsteller.
 
-## Nutzungsbedingungen
-
-Die APIs werden unter folgenden [Nutzungsbedingungen](https://docs.api.europace.de/nutzungsbedingungen/) zur Verfügung gestellt.
+## Terms of use
+The APIs are made available under the following [Terms of Use](https://docs.api.europace.de/terms/).
