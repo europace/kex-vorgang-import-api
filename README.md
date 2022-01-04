@@ -8,13 +8,13 @@ The corresponding JSON-schema, which is useful for code-generation, can be found
 
 > ⚠️ This API is continuously developed. Therefore we expect
 > all users to align with the "[Tolerant Reader Pattern](https://martinfowler.com/bliki/TolerantReader.html)", which requires clients to be
-> tolerant towards compatible API-Changes when reading and processing the data. This means:
+> tolerant towards compatible API changes when reading and processing the data. This means:
 >
 > 1. unknown properties must not result in errors
 >
 > 2. Strings with a restricted set of values (Enums) must support new unknown values
 >
-> 3. sensible usage of HTTP-Statuscodes, even if they are not explicitly documented
+> 3. sensible usage of HTTP status codes, even if they are not explicitly documented
 >
 
 <!-- https://opensource.zalando.com/restful-api-guidelines/#108 -->
@@ -104,7 +104,7 @@ The data needs to be sent as JSON inside the request body.
 
 For better readability, the overall format is broken down into *types* that are defined separately but should be used at the corresponding positions. The attributes within a block can be specified in any order.
 
-Currently we have only one mandatory field in our dataset (see [Vorgang](#vorgang).
+Currently we have only one mandatory field in our dataset (see [Vorgang](#vorgang)).
 
 In general, all data is imported as a new Vorgang in **Kredit**Smart, except:
 
@@ -138,7 +138,7 @@ The property *kundenbetreuer.partnerId* is mandatory.
         "partnerId": String
     }
 
-The Europace 2 PartnerID has 5-characters and has the format ABC12.
+The Europace 2 Partner-ID has 5-characters and has the format ABC12.
 
 ### Benachrichtigung
 
@@ -225,8 +225,8 @@ The value of `gemeinsamerHaushalt` is relevant for the second Antragsteller only
         "rentner": Rentner
     }
 
-The `Beschaeftigungsart` determines which data is used. For example the `beschaeftigungsart=ARBEITER` means that all data of field `arbeiter` is used, for `beschaeftigungsart=BEAMTER` the data of field `beamter` is used. All other fields will be ignored.
-If there is no value for `Beschaeftigungsart` or the corresponding field to a `Beschaeftigungsart` is empty, all data is ignored.
+The `beschaeftigungsart` determines which data is used. For example the `beschaeftigungsart=ARBEITER` means that all data of field `arbeiter` is used, for `beschaeftigungsart=BEAMTER` the data of field `beamter` is used. All other fields will be ignored.
+If there is no value for `beschaeftigungsart` or the corresponding field to a `beschaeftigungsart` is empty, all data is ignored.
 
 #### Arbeiter
 
