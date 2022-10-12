@@ -603,8 +603,9 @@ In addition there is the value "SONSTIGE" ("other")
         "ratenschutzAntragsteller1": FinanzbedarfRatenschutz,
         "ratenschutzAntragsteller2": FinanzbedarfRatenschutz
     }
-    
-`ratenschutzAntragsteller` is just processed if no `versicherteRisikenAntragsteller` is set.
+ 
+`fahrzeugkauf` is only processed if the `finanzierungszweck` is set to "FAHRZEUGKAUF".
+`ratenschutzAntragsteller` is only processed if no `versicherteRisikenAntragsteller` is set.
 
 #### Fahrzeugkauf
 
@@ -619,8 +620,6 @@ In addition there is the value "SONSTIGE" ("other")
         "modell": String,
         "ps": Integer
     }
-
-`Fahrzeugkauf` is just processed if the `Finanzierungszweck` is set to "FAHRZEUGKAUF".
 
 #### FinanzbedarfRatenschutz
     
