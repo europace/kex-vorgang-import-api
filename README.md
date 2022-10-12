@@ -600,7 +600,13 @@ In addition there is the value "SONSTIGE" ("other")
             "versicherteRisikenAntragsteller1": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ],
             "versicherteRisikenAntragsteller2": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ]
         }
+        "ratenschutzAntragsteller1": FinanzbedarfRatenschutz,
+        "ratenschutzAntragsteller2": FinanzbedarfRatenschutz
     }
+ 
+`fahrzeugkauf` is only processed if the `finanzierungszweck` is set to `FAHRZEUGKAUF`.
+
+`ratenschutzAntragsteller` is only processed if no `versicherteRisikenAntragsteller` is set.
 
 #### Fahrzeugkauf
 
@@ -616,7 +622,22 @@ In addition there is the value "SONSTIGE" ("other")
         "ps": Integer
     }
 
-`Fahrzeugkauf` is just processed if the `Finanzierungszweck` is set to "FAHRZEUGKAUF".
+#### FinanzbedarfRatenschutz
+    
+    {
+      arbeitslosigkeitAbsicherung: RatenschutzAbsicherung,
+      arbeitsunfaehigkeitAbsicherung: RatenschutzAbsicherung,
+      todesfallAbsicherung: RatenschutzAbsicherung
+    }
+    
+##### RatenschutzAbsicherung
+
+    {
+      gewuenscht: Boolean,
+      kommentar: String,
+      vorhanden: Boolean,
+      wichtig: Boolean
+    }
 
 ## Response Format
 
