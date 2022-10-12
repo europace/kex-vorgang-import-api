@@ -605,6 +605,7 @@ In addition there is the value "SONSTIGE" ("other")
     }
  
 `fahrzeugkauf` is only processed if the `finanzierungszweck` is set to "FAHRZEUGKAUF".
+
 `ratenschutzAntragsteller` is only processed if no `versicherteRisikenAntragsteller` is set.
 
 #### Fahrzeugkauf
