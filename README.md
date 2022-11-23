@@ -596,10 +596,6 @@ In addition there is the value "SONSTIGE" ("other")
             "rateMonatlich": BigDecimal,
             "ratenzahlungstermin": "MONATSENDE" | "MONATSMITTE"
         },
-        "ratenschutz": {
-            "versicherteRisikenAntragsteller1": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ],
-            "versicherteRisikenAntragsteller2": [ "ARBEITSLOSIGKEIT" | "ARBEITSUNFAEHIGKEIT" | "LEBEN" ]
-        }
         "ratenschutzAntragsteller1": FinanzbedarfRatenschutz,
         "ratenschutzAntragsteller2": FinanzbedarfRatenschutz
     }
