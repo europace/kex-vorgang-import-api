@@ -526,7 +526,6 @@ In addition there is the value "SONSTIGE" ("other")
 #### Bausparvertrag
 
     {
-        "angesparterBetrag": BigDecimal,
         "gehoertZuAntragsteller": Antragstellerzuordnung,
         "sparbeitragMonatlich": BigDecimal
     }
@@ -542,8 +541,7 @@ In addition there is the value "SONSTIGE" ("other")
 
     {
         "gehoertZuAntragsteller": Antragstellerzuordnung,
-        "praemieMonatlich": BigDecimal,
-        "rueckkaufswert": BigDecimal,
+        "praemieMonatlich": BigDecimal
     }
     
 #### Sonstiger Vermögenswert
