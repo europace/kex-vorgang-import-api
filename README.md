@@ -387,25 +387,19 @@ In addition there is the value "SONSTIGE" ("other")
          "einnahmen": {
             "ehegattenunterhalt": [ Ehegattenunterhalt ],
             "einkuenfteAusNebentaetigkeit": [ Einkunft aus Nebentätigkeit ],
-            "einkuenfteAusKapitalvermoegen": [ Einkunft aus Kapitalvermögen ],
             "sonstigeEinnahmen": [ Sonstige Einnahme ],
             "unbefristeteZusatzrenten": [ Unbefristete Zusatzrente ]
         },
         "verbindlichkeiten": {
             "dispositionskredite": [ Dispositionskredit ],
-            "geschaeftskredite": [ Geschäftskredit ],
-            "kontokorrentkredite": [ Kontokorrentkredit ],
             "kreditkarten": [ Kreditkarte ],
             "leasings": [ Leasing ],
             "ratenkredite": [ Ratenkredit ],
             "sonstigeVerbindlichkeiten": [ Sonstige Verbindlichkeit ]
         },
         "vermoegen": {
-            "bankUndSparguthaben": [ Bank- und Sparguthaben ],
             "bausparvertraege": [ Bausparvertrag ],
-            "depotvermoegen": [ Depotvermögen ],
-            "lebensversicherungen": [ Lebensversicherung ],
-            "sonstigeVermoegenswerte": [ Sonstiger Vermögenswert ]
+            "lebensversicherungen": [ Lebensversicherung ]
         },
         "immobilien": [ Immobilie ],
         "kinder": [ kind ],
@@ -435,7 +429,7 @@ In addition there is the value "SONSTIGE" ("other")
         "gehoertZuAntragsteller": Antragstellerzuordnung
     }
     
-#### Ehegattenunterhalt, Sonstige Einnahme, Einkunft aus Kapitalvermögen und Unbefristete Zusatzrente
+#### Ehegattenunterhalt, Sonstige Einnahme und Unbefristete Zusatzrente
 
     {
         "betragMonatlich": BigDecimal,
@@ -464,16 +458,6 @@ In addition there is the value "SONSTIGE" ("other")
         "zinssatz": BigDecimal
     }
 
-#### Kontokorrentkredit
-
-    {
-        "beanspruchterBetrag": BigDecimal,
-        "gehoertZuAntragsteller": Antragstellerzuordnung,
-        "glaeubiger": String,
-        "verfuegungsrahmen": BigDecimal,
-        "zinssatz": BigDecimal
-    } 
-
 #### Kreditkarte
 
     {
@@ -499,7 +483,7 @@ In addition there is the value "SONSTIGE" ("other")
         "schlussrate": BigDecimal
     }
 
-#### Ratenkredit, Geschäftskredit und Sonstige Verbindlichkeit
+#### Ratenkredit und Sonstige Verbindlichkeit
 
     {
         "abloesen": true | false,
@@ -516,25 +500,11 @@ In addition there is the value "SONSTIGE" ("other")
         "urspruenglicherKreditbetrag": BigDecimal
     }
 
-#### Bank- und Sparguthaben
-
-    {
-        "betrag": BigDecimal,
-        "gehoertZuAntragsteller": Antragstellerzuordnung
-    }
-
 #### Bausparvertrag
 
     {
         "gehoertZuAntragsteller": Antragstellerzuordnung,
         "sparbeitragMonatlich": BigDecimal
-    }
-
-#### Depotvermögen
-
-    {
-        "betrag": BigDecimal,
-        "gehoertZuAntragsteller": Antragstellerzuordnung
     }
     
 #### Lebensversicherung
@@ -542,13 +512,6 @@ In addition there is the value "SONSTIGE" ("other")
     {
         "gehoertZuAntragsteller": Antragstellerzuordnung,
         "praemieMonatlich": BigDecimal
-    }
-    
-#### Sonstiger Vermögenswert
-
-    {
-        "betrag": BigDecimal,
-        "gehoertZuAntragsteller": Antragstellerzuordnung
     }
 
 #### Immobilie
