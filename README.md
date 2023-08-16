@@ -130,7 +130,21 @@ At different positions inside the data you need to specify a country or a citize
         "kommentare": [ String ]
     }
 
-The property *kundenbetreuer.partnerId* is mandatory.
+The property *kundenbetreuer.partnerId* is mandatory.\
+Concerning *leadquelle*:
+
+* If you're using the selfservice via api (RaaS) please provide the correct value for “leadquelle” for your selfservice-use case. That is important in order to generate appropriate and valuable reporting.
+* Possible values for “leadquelle” regarding your selfservice usecase are:
+  * For the usecases “Marktplatz in der Bank”, “Marktplatz beim Vertrieb” and “Vermittler:innen Frontend” the format for “leadquelle” is USECASE_PARTNERID_CHANNEL
+    * Possible values for USECASE: MARKTPLATZBANK, MARKTPLATZVERTRIEB, VERMITTLERFRONTEND
+    * PARTNERID is your Europace partner id
+    * For CHANNEL you can define the value on your own suitable for your special project.
+    * e.g. “MARKTPLATZBANK_ABC12_KAMPAGNE”, MARKTPLATZVERTRIEB_ABC12_WEBSITE”, “VERMITTLERFRONTEND_ABC12_CRMSYSTEM”
+  * For the usecase “LeadTools” the format is `TOOL_PARTNERID`
+    * Possible values for TOOL: KREDITLEAD, KREDITTIPP, KREDITLEADSELFSERVICE
+    * PARTNERID is your Europace partner id
+    * e.g.: KREDITLEAD__ABC12
+    * If you are not sure which values ​​you should use for USECASE,  PARTNERID or CHANNEL please get in touch with your Europace representative.
 
 ### Partner
 
