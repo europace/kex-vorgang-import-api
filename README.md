@@ -131,6 +131,7 @@ At different positions inside the data you need to specify a country or a citize
     }
 
 The property *kundenbetreuer.partnerId* is mandatory.\
+
 Concerning *leadquelle*:
 
 If you are using the selfservice via api (RaaS) please provide the correct value for “leadquelle” for your selfservice-use case. That is important in order to generate appropriate and valuable reporting.
