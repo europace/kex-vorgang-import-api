@@ -133,7 +133,7 @@ At different positions inside the data you need to specify a country or a citize
 The property *kundenbetreuer.partnerId* is mandatory.\
 Concerning *leadquelle*:
 
-* If you're using the selfservice via api (RaaS) please provide the correct value for “leadquelle” for your selfservice-use case. That is important in order to generate appropriate and valuable reporting.
+If you are using the selfservice via api (RaaS) please provide the correct value for “leadquelle” for your selfservice-use case. That is important in order to generate appropriate and valuable reporting.
 * Possible values for “leadquelle” regarding your selfservice usecase are:
   * For the usecases “Marktplatz in der Bank”, “Marktplatz beim Vertrieb” and “Vermittler:innen Frontend” the format for “leadquelle” is USECASE_PARTNERID_CHANNEL
     * Possible values for USECASE: MARKTPLATZBANK, MARKTPLATZVERTRIEB, VERMITTLERFRONTEND
