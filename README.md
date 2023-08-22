@@ -132,9 +132,9 @@ At different positions inside the data you need to specify a country or a citize
 
 The property *kundenbetreuer.partnerId* is mandatory.
 
-Concerning *leadquelle*: If you are using the APIs [to accept consumer loans](https://docs.api.europace.de/privatkredit/use-cases/raas/) please use the correct value for the field `leadquelle`.
+Regarding *leadquelle*: If you are using the APIs [to accept consumer loans](https://docs.api.europace.de/privatkredit/use-cases/raas/) please use the correct value for the field `leadquelle`.
 This is important for Europace in order to generate appropriate and valuable reporting.
-To make sure that you use the correct value for `leadquelle` please get in touch with your Europace contact.
+To make sure that you use the correct value for `leadquelle` **please get in touch with your Europace contact**.
 
 ### Partner
 
