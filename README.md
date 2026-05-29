@@ -170,6 +170,7 @@ If the Benachrichtigung is set to `aktiv`, the Kundenbetreuer receives a confirm
         "aufenthaltBefristetBis": "YYYY-MM-DD",
         "inDeutschlandSeit": "YYYY-MM-DD",
         "staatsangehoerigkeit": "ALPHA-2 Isocode",
+        "weitereStaatsangehoerigkeiten": [ "ALPHA-2 Isocode" ],
         "steuerId": String
     }
 
