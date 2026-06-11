@@ -37,7 +37,7 @@ A successful call results in a response with the HTTP Statuscode **201 CREATED**
 
 ## Authentication
 
-This API is secured by the OAuth client credentials flow using the [Authorization-API](https://docs.api.europace.de/privatkredit/authentifizierung/).
+This API is secured by the OAuth client credentials flow using the [Authorization-API](https://docs.api.europace.de/common/authentication/authorization-api/).
 To use this API your OAuth2-Client needs the following Scopes:
 
 | Scope                          | Label in Partnermanagement             | Description                               |
