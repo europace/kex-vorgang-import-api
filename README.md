@@ -399,6 +399,7 @@ In addition there is the value "SONSTIGE" ("other")
             "dispositionskredite": [ Dispositionskredit ],
             "kreditkarten": [ Kreditkarte ],
             "leasings": [ Leasing ],
+            "ratenkaeufe": [ Ratenkauf ],
             "ratenkredite": [ Ratenkredit ],
             "sonstigeVerbindlichkeiten": [ Sonstige Verbindlichkeit ]
         },
@@ -486,6 +487,15 @@ In addition there is the value "SONSTIGE" ("other")
         "glaeubiger": String,
         "rateMonatlich": BigDecimal,
         "schlussrate": BigDecimal
+    }
+
+#### Ratenkauf
+
+    {
+        "gehoertZuAntragsteller": Antragstellerzuordnung,
+        "glaeubiger": String,
+        "rateMonatlich": BigDecimal,
+        "restschuld": BigDecimal
     }
 
 #### Ratenkredit und Sonstige Verbindlichkeit
