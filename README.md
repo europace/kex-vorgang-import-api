@@ -491,6 +491,8 @@ In addition there is the value "SONSTIGE" ("other")
 
 #### Ratenkauf
 
+> ⚠️ **Note:** The new Ratenkauf liability type is available for the technical preparation and implementation of your API integration. Please do not use Ratenkauf in production yet. Production use will be enabled together with the corresponding support in KreditSmart on November 19, 2026.
+
     {
         "gehoertZuAntragsteller": Antragstellerzuordnung,
         "glaeubiger": String,
