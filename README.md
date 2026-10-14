@@ -127,7 +127,8 @@ At different positions inside the data you need to specify a country or a citize
         "antragsteller2": Antragsteller,
         "haushalt": Haushalt,
         "finanzbedarf": Finanzbedarf,
-        "kommentare": [ String ]
+        "kommentare": [ String ],
+        "kommunikationsangaben": Kommunikationsangaben
     }
 
 The property *kundenbetreuer.partnerId* is mandatory.
@@ -612,6 +613,24 @@ In addition there is the value "SONSTIGE" ("other")
       vorhanden: Boolean,
       wichtig: Boolean
     }
+
+### Kommunikationsangaben
+
+> ⚠️ **Note:** The new Kommunikationsangaben are available for the technical preparation and implementation of your API integration. Please do not use Kommunikationsangaben in production yet. Production use will be enabled together with the corresponding support in KreditSmart on November 19, 2026.
+
+    {
+        "bereitstellungswegSecci": "DIGITAL" | "DIGITAL_PAPIER",
+        "kommunikationswegNachVertragsschluss": "DIGITAL" | "PAPIER",
+        "kommunikationswegErinnerungWiderrufsrecht": "DIGITAL" | "PAPIER",
+        "kommunikationswegWiderruf": "DIGITAL" | "PAPIER"
+    }
+
+The Kommunikationsangaben are stored on Vorgang level and apply to both Antragsteller. All fields are optional and can be sent individually.
+
+* `bereitstellungswegSecci`: provision of the pre-contractual information (SECCI), either digital only or digital and additionally by post (`DIGITAL_PAPIER`)
+* `kommunikationswegNachVertragsschluss`: communication about changes after conclusion of the contract
+* `kommunikationswegErinnerungWiderrufsrecht`: reminder of the right of withdrawal
+* `kommunikationswegWiderruf`: exercise of a possible withdrawal
 
 ## Response Format
 
