@@ -625,7 +625,7 @@ In addition there is the value "SONSTIGE" ("other")
         "kommunikationswegWiderruf": "DIGITAL" | "PAPIER"
     }
 
-The Kommunikationsangaben are stored on Vorgang level and apply to both Antragsteller. All fields are optional and can be sent individually.
+The Kommunikationsangaben are stored on Vorgang level and apply to both Antragsteller.
 
 * `bereitstellungswegSecci`: provision of the pre-contractual information (SECCI), either digital only or digital and additionally by post (`DIGITAL_PAPIER`)
 * `kommunikationswegNachVertragsschluss`: communication about changes after conclusion of the contract
